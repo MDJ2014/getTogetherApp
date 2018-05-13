@@ -10,6 +10,10 @@ var Notification = require('../models/notifications').Notification;
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
+const tconfig = require('../tconfig');
+const Twit = require('twit');
+
+const T = new Twit(tconfig);
 
 
 
@@ -62,34 +66,52 @@ function respondWithResult(res, statusCode) {
   }
 
 
+function tweet(plan){
+  T.post('statuses/update', { status: "I am going to " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ " on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ".  Tweet if you want to go. "}, function(err, data, response) {
+   
+  })
+}
 
+function editTweet(plan){
+  T.post('statuses/update', { status: "I had to change my plans. I'm going to " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ ". My new day to go is on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ".  Tweet if you want to go at that time. "}, function(err, data, response) {
+  
+  })
+}
+
+function cancelTweet(plan){
+  T.post('statuses/update', { status: "I had cancel my plans.  I will not be able to go to  " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ " on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ". My appologies to all. "}, function(err, data, response) {
+   })
+}
 
 
 router.get("/",  function(req, res, next) {
-    Plan.find({}).exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+    // Plan.find({}).exec()
+    // .then(respondWithResult(res))
+    // .catch(handleError(res));
     //res.redirect('/api/');
 });
 
-router.get("/:id",  function(req, res, next) {
 
-return Plan.findById(req.params.id).exec()
+
+
+router.get("/:id",  function(req, res, next) {
+ 
+return Plan.find({user: req.params.id}).exec()
+//return Plan.findById(req.params.id).exec()
 .then(handleEntityNotFound(res))
 .then(respondWithResult(res))
 .catch(handleError(res));
 });
 
 
-router.get("/new",  function(req, res, next) {
-    res.send("New plan form");
-});
+
 
 
 
 
 router.post("/",  function(req, res, next) {
   return Plan.create(req.body)
+  .then(tweet(req.body))
    .then(respondWithResult(res, 201))
    .catch(handleError(res));
 });
@@ -185,32 +207,32 @@ router.put("/edit/:id",  function(req, res, next) {
   //   .catch(handleError(res));
   //}
 
-return Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new:true,upsert:false}).exec() .then(respondWithResult(res))
+return Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new:true,upsert:false}).exec()
+.then(editTweet(req.body))
+.then(respondWithResult(res))
 .catch(handleError(res));
-
-
-
 });
 
 
 
 //update rsvps
-router.put("/rsvps/:id",  function(req, res, next) {
+// router.put("/rsvps/:id",  function(req, res, next) {
 
-  if(req.body._id) {
-      Reflect.deleteProperty(req.body, '_id');
-    }
-    return Plan.findOneAndUpdate({_id: req.params.id}, {$addToSet: {rsvps: req.body.rsvps}}, {upsert: true, new: 
-      true,  setDefaultsOnInsert: true, runValidators: true}).exec()
-      .then(respondWithResult(res))
-      .catch(handleError(res));
-  });
+//   if(req.body._id) {
+//       Reflect.deleteProperty(req.body, '_id');
+//     }
+//     return Plan.findOneAndUpdate({_id: req.params.id}, {$addToSet: {rsvps: req.body.rsvps}}, {upsert: true, new: 
+//       true,  setDefaultsOnInsert: true, runValidators: true}).exec()
+//       .then(respondWithResult(res))
+//       .catch(handleError(res));
+//   });
 
 
 
 
 router.delete("/delete/:id",  function(req, res, next) {
     return Plan.findById({_id: req.params.id}).exec()
+    .then(cancelTweet(req.body))
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

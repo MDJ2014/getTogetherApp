@@ -67,9 +67,17 @@ router.get("/",  function(req, res, next) {
 });
 
 
+router.get("/:id",  function(req, res, next) {
+  return User.findById(req.params.id).exec()
+  .then(handleEntityNotFound(res))
+  .then(respondWithResult(res))
+  .catch(handleError(res));
+});
+
 
 
 router.post("/",  function(req, res, next) {
+  
    return User.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
