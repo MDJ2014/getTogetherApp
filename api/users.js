@@ -76,13 +76,20 @@ router.get("/:id",  function(req, res, next) {
 
 
 
-router.post("/",  function(req, res, next) {
-  
-   return User.create(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
-});
 
+router.post("/",  function(req, res, next) {
+
+if(User.find({userId:req.body})){
+  return (console.log('Name exists already'));
+}else{
+  return User.create(req.body)
+  .then(respondWithResult(res, 201))
+  .catch(handleError(res));
+}
+
+
+
+});
 
 
 

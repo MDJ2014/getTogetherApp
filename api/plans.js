@@ -73,13 +73,13 @@ function tweet(plan){
 }
 
 function editTweet(plan){
-  T.post('statuses/update', { status: "I had to change my plans. I'm going to " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ ". My new day to go is on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ".  Tweet if you want to go at that time. "}, function(err, data, response) {
+  T.post('statuses/update', { status: "I had to change my plans. I'm still going to " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ ". But my new day to go is on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ".  Tweet if you want to go at that time. "}, function(err, data, response) {
   
   })
 }
 
 function cancelTweet(plan){
-  T.post('statuses/update', { status: "I had cancel my plans.  I will not be able to go to  " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ " on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ". My appologies to all. "}, function(err, data, response) {
+  T.post('statuses/update', { status: "I had to cancel my plans.  I will not be able to go to  " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ " on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ". My appologies to all. "}, function(err, data, response) {
    })
 }
 
@@ -231,10 +231,10 @@ return Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new:true,upsert:fa
 
 
 router.delete("/delete/:id",  function(req, res, next) {
-    return Plan.findById({_id: req.params.id}).exec()
-    .then(cancelTweet(req.body))
+     return Plan.findById({_id: req.params.id}).exec()
     .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
+    // .then(cancelTweet(res))
+     .then(removeEntity(res))
     .catch(handleError(res));
 });
 
