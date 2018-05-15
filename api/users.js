@@ -3,7 +3,7 @@ const express = require("express");
 const router = new express.Router();
 var User = require('../models/users').User;
 var Plan = require('../models/plans').Plan;
-var Notification= require('../models/notifications').Notification;
+
 
 var applyPatch = require('fast-json-patch');
 
@@ -21,26 +21,26 @@ function respondWithResult(res, statusCode) {
     };
   }
 
-  function patchUpdates(patches) {
-    return function(entity) {
-      try {
-        applyPatch(entity, patches, /*validate*/ true);
-      } catch(err) {
-        return Promise.reject(err);
-      }
+  // function patchUpdates(patches) {
+  //   return function(entity) {
+  //     try {
+  //       applyPatch(entity, patches, /*validate*/ true);
+  //     } catch(err) {
+  //       return Promise.reject(err);
+  //     }
 
-      return entity.save();
-    };
-  }
+  //     return entity.save();
+  //   };
+  // }
 
-  function removeEntity(res) {
-    return function(entity) {
-      if(entity) {
-        return entity.remove()
-          .then(() => res.status(204).end());
-      }
-    };
-  }
+  // function removeEntity(res) {
+  //   return function(entity) {
+  //     if(entity) {
+  //       return entity.remove()
+  //         .then(() => res.status(204).end());
+  //     }
+  //   };
+  // }
 
   function handleEntityNotFound(res) {
     return function(entity) {
@@ -109,29 +109,29 @@ router.put("/edit/:id",  function(req, res, next) {
 
 
 //update User plan
-router.put("/userplan/:id",  function(req, res, next) {
+// router.put("/userplan/:id",  function(req, res, next) {
 
-    if(req.body._id) {
-        Reflect.deleteProperty(req.body, '_id');
-      }
-      return User.findOneAndUpdate({_id: req.params.id}, {$addToSet: {userPlans: req.body.userPlans}}, {upsert: true, new:
-        true,  setDefaultsOnInsert: true, runValidators: true}).exec()
-        .then(respondWithResult(res))
-        .catch(handleError(res));
-    });
+//     if(req.body._id) {
+//         Reflect.deleteProperty(req.body, '_id');
+//       }
+//       return User.findOneAndUpdate({_id: req.params.id}, {$addToSet: {userPlans: req.body.userPlans}}, {upsert: true, new:
+//         true,  setDefaultsOnInsert: true, runValidators: true}).exec()
+//         .then(respondWithResult(res))
+//         .catch(handleError(res));
+//     });
 
 
 //update friends
-    router.put("/friends/:id",  function(req, res, next) {
+    // router.put("/friends/:id",  function(req, res, next) {
 
-      if(req.body._id) {
-          Reflect.deleteProperty(req.body, '_id');
-        }
-        return User.findOneAndUpdate({_id: req.params.id}, {$addToSet: {friends: req.body.friends}}, {upsert: true, new:
-          true,  setDefaultsOnInsert: true, runValidators: true}).exec()
-          .then(respondWithResult(res))
-          .catch(handleError(res));
-      });
+    //   if(req.body._id) {
+    //       Reflect.deleteProperty(req.body, '_id');
+    //     }
+    //     return User.findOneAndUpdate({_id: req.params.id}, {$addToSet: {friends: req.body.friends}}, {upsert: true, new:
+    //       true,  setDefaultsOnInsert: true, runValidators: true}).exec()
+    //       .then(respondWithResult(res))
+    //       .catch(handleError(res));
+    //   });
 
     /*
     router.delete("/delete/:id",  function(req, res, next) {

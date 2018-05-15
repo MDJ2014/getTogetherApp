@@ -2,8 +2,6 @@
 
 
 var mongoose = require('mongoose');
-//var validator = require('validator');
-//var bcrypt = require('bcrypt');
 
 
 
@@ -84,13 +82,13 @@ ampm:{
     type: String
 },
 
-   rsvps:[
-    {
-        name:{
-            type:String
-        }
-    }
-  ],
+//    rsvps:[
+//     {
+//         name:{
+//             type:String
+//         }
+//     }
+//   ],
  
   versionKey: false
 });

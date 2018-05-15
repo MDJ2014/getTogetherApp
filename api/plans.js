@@ -5,8 +5,8 @@ const router = new express.Router();
 var applyPatch = require('fast-json-patch');
 var User = require('../models/users').User;
 var Plan = require('../models/plans').Plan;
-var Rsvp = require('../models/rsvps').Rsvp;
-var Notification = require('../models/notifications').Notification;
+
+
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
@@ -73,7 +73,7 @@ function tweet(plan){
 }
 
 function editTweet(plan){
-  T.post('statuses/update', { status: "I had to change my plans. I'm still going to " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ ". But my new day to go is on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ".  Tweet if you want to go at that time. "}, function(err, data, response) {
+  T.post('statuses/update', { status: "I had to change my plans. I'm still going to " +plan.name + " in "+ plan.location.city+", "+plan.location.state+ ". But my new time to go is on "+ plan.month+" "+ plan.day+ " at "+ plan.time + plan.ampm+ ".  Tweet if you want to go at that time. "}, function(err, data, response) {
   
   })
 }

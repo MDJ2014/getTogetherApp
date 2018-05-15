@@ -37,8 +37,8 @@ router.post("/search",  function(req, res, next) {
       });
 
 
-const authRoutes = require('./auth');
-router.use('/auth', authRoutes);
+// const authRoutes = require('./auth');
+// router.use('/auth', authRoutes);
 
 const userRoutes = require('./users');
 router.use('/users', userRoutes);
@@ -46,22 +46,6 @@ router.use('/users', userRoutes);
 
 const planRoutes = require('./plans');
 router.use('/plans', planRoutes);
-
-
-//const rsvpRoutes = require('./rsvps');
-//router.use('/rsvps', rsvpRoutes);
-
-//const inviteeRoutes = require('./invitees');
-//router.use('/invitees', inviteeRoutes);
-
-const notiRoutes = require('./notifications');
-router.use('/notifications', notiRoutes);
-
-
-
-
-
-
 
 
 

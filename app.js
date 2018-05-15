@@ -20,7 +20,7 @@ const apiRoutes = require('./api');
 const app = express();
 
 
-
+app.set('etag', false);
 
 
 app.use(express.static(path.resolve(__dirname,'GetTogether/dist')));
