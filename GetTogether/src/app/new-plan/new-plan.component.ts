@@ -26,25 +26,30 @@ public plan: object;
 
 
 
-  constructor(private dbService : DbServiceService,  private router: Router, private auth: AuthService){
-
-    // document.getElementById("month").setErrors({ 'invalid': true });
-  }
+  constructor(private dbService : DbServiceService, private router: Router, private auth: AuthService){}
   
+
 
 
   savePlan(){
 
-    
-    this.dbService.savePlantoDb(this.plan).subscribe(results=>{
+    var x = document.getElementById("myModal");
+    x.style.display = "block";
+   
 
-      var canplan=[];
-      canplan.push(this.plan);
-      var user = canplan[0].user;
-        this.router.navigate(['/myplans/'+user]);
+    setTimeout(function(){ x.style.display = "none" }, 3000);
 
-    return console.log("Plan saved!");
-    })
+    // this.dbService.savePlantoDb(this.plan).subscribe(results=>{
+
+    //   var canplan=[];
+    //   canplan.push(this.plan);
+    //   var user = canplan[0].user;
+ 
+
+    //     this.router.navigate(['/myplans/'+user]);
+
+    // return console.log("Plan saved!");
+   // })
   }
 
 
@@ -54,5 +59,10 @@ public plan: object;
 ngOnInit() {
  this.dbService.newPlan.subscribe(plan=>this.plan = plan)
 }
+
+
+
+
+
 
 }

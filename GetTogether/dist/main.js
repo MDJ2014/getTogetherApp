@@ -103,15 +103,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _my_plans_my_plans_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./my-plans/my-plans.component */ "./src/app/my-plans/my-plans.component.ts");
 /* harmony import */ var _edit_plan_edit_plan_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./edit-plan/edit-plan.component */ "./src/app/edit-plan/edit-plan.component.ts");
 /* harmony import */ var _new_plan_new_plan_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./new-plan/new-plan.component */ "./src/app/new-plan/new-plan.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./authguard.guard */ "./src/app/authguard.guard.ts");
+/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./authguard.guard */ "./src/app/authguard.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -133,23 +131,19 @@ var routes = [
     {
         path: 'myplans/:authId',
         component: _my_plans_my_plans_component__WEBPACK_IMPORTED_MODULE_4__["MyPlansComponent"],
-        canActivate: [_authguard_guard__WEBPACK_IMPORTED_MODULE_8__["AuthguardGuard"]],
+        canActivate: [_authguard_guard__WEBPACK_IMPORTED_MODULE_7__["AuthguardGuard"]],
         data: { shouldReuse: false }
     },
     {
         path: 'editplan',
         component: _edit_plan_edit_plan_component__WEBPACK_IMPORTED_MODULE_5__["EditPlanComponent"],
-        canActivate: [_authguard_guard__WEBPACK_IMPORTED_MODULE_8__["AuthguardGuard"]]
+        canActivate: [_authguard_guard__WEBPACK_IMPORTED_MODULE_7__["AuthguardGuard"]]
     },
     {
         path: 'newplan',
         component: _new_plan_new_plan_component__WEBPACK_IMPORTED_MODULE_6__["NewPlanComponent"],
-        canActivate: [_authguard_guard__WEBPACK_IMPORTED_MODULE_8__["AuthguardGuard"]]
+        canActivate: [_authguard_guard__WEBPACK_IMPORTED_MODULE_7__["AuthguardGuard"]]
     },
-    {
-        path: 'login',
-        component: _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"]
-    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -175,7 +169,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"grid\">\n  <div class=\"item\" id=\"header\">\n \n      <h1>Get Together!</h1>\n   </div>\n <div class=\"item\" id=\"menu\">\n        <div class=\"mx-auto\" style=\"width: 100%\">\n                <nav class=\"navbar navbar-expand-lg navbar-light bg-dark\" id=\"nav\">\n                        <a style=\"color:white;\" class=\"navbar-brand\" routerLink=\"/\">Get Together!</a><span *ngIf=\"user[0] \" ><img id=\"userlogo\" class=\"circle\" src= {{user[0].photo}}><span id=\"welcome\" *ngIf=\"user[0]\" style=\"color:white;\">Welcome {{user[0].userName}}</span></span>\n                              <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"dropdown\"       data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                                      <span class=\"navbar-toggler-icon\"></span>\n                              </button>\n                              <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n                                    <div class=\"ml-auto\">\n                                            <ul class=\"navbar-nav\">\n\n                                                   \n                                                    <li class=\"nav-item active\">\n\n                                                       \n                                                       <a id=\"login\"  *ngIf=\"!user[0]\"\n                                                 \n                                                      (click)=\"loginWithTwitter()\"  style=\"color:white;\" >Log in</a>\n\n                                                 \n\n                                                        <a id=\"logout\" style=\"color:white;\"   (click)=\"logOut()\" *ngIf=\"user[0]\">Logout</a>\n\n                                                                                         \n                                                    </li>\n                                                     \n                                                        <li class=\"nav-item\">\n                                                            <a (click)=\"goToPlans()\" style=\"color:white;\">My Plans</a>\n                                                        </li>\n                                                       \n                                                        <li class=\"nav-item\">\n                                                            <a  routerLink=\"/about\" style=\"color:white;\">About</a>\n                                                        </li>\n                                            </ul>\n                                    </div>\n                          </div>\n                </nav>\n        </div>\n </div>\n\n\n <div class=\"item\" id=\"search\"><router-outlet></router-outlet></div>\n\n <div class=\"item\" id=\"footer\">\n     <!-- <div class=\"container\" id='creds'> -->\n        <div id=\"credits\" class=\"container\">\n                <div class= \"item\" id=\"madewith\"> Made with:</div>\n                <!-- <div class=\"item\" id=\"logos\">  -->\n                        <!-- <span class= \"item\" id=\"madewith\"> Made with:</span> -->\n                        <img width=\"46\" alt=\"Mongo Logo\" src=\"assets/img/mongo-notxt.png\">\n                        <img width=\"65\" alt=\"Express Logo\" src=\"assets/img/express2.png\">\n                        <img width=\"70\" alt=\"Angular Logo\" src=\"assets/img/angular.png\">\n                        <img width=\"57\" alt=\"Node Logo\" src=\"assets/img/node2.png\">\n                        <img width=\"52\" alt=\"Twitter Logo\" src=\"assets/img/twitter.png\">\n                        <img width=\"100\" alt=\"Yelp Logo\" src=\"assets/img/yelpstar.png\">  \n                        <!-- <span class=\"item\" id=\"byline\"> Made by: Mark Jones</span> -->\n                <!-- </div> -->\n                <div class=\"item\" id=\"byline\"> Made by: Mark Jones</div>\n        </div>\n   <!-- </div>    -->\n </div>\n   <div class=\"item\" id=\"left\"></div>\n   <div class=\"item\" id=\"right\"></div>\n</div>\n  \n  \n  \n \n<!--   \n      \ndata:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\n              \n              -->\n            \n                  \n               \n\n  \n  \n  \n  <!-- <div class=\"item\" id=\"search\"><app-search></app-search></div> -->\n  \n  \n  \n\n\n\n\n\n  \n\n\n     \n\n\n\n<!-- <div id=\"madewith\">\n  <div id=\"made\">Made with: </div>\n<span>\n    <img width=\"46\" alt=\"Mongo Logo\" src=\"assets/img/mongo.png\">\n    <img width=\"60\" alt=\"Express Logo\" src=\"assets/img/express.png\">\n    <img width=\"70\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\n\n    <img width=\"57\" alt=\"Node Logo\" src=\"assets/img/node.png\">\n    <img width=\"52\" alt=\"Twitter Logo\" src=\"assets/img/twit.png\">\n    <img width=\"100\" alt=\"Yelp Logo\" src=\"assets/img/yelp.png\">\n  </span>\n  <span id='byline'>Made by: Mark Jones</span> \n  </div>\n  -->\n  \n\n  \n  \n  \n  \n\n  \n  \n  \n\n"
+module.exports = "\n<div class=\"grid\">\n  <div class=\"item\" id=\"header\">\n \n      <h1>Get Together!</h1>\n   </div>\n <div class=\"item\" id=\"menu\">\n        <div class=\"mx-auto\" style=\"width: 100%\">\n                <nav class=\"navbar navbar-expand-lg navbar-light bg-dark\" id=\"nav\">\n                        <a style=\"color:white;\" class=\"navbar-brand\" routerLink=\"/\">Get Together!</a><span *ngIf=\"user[0] \" ><img id=\"userlogo\" class=\"circle\" src= {{user[0].photo}}><span id=\"welcome\" *ngIf=\"user[0]\" style=\"color:white;\">Welcome {{user[0].userName}}</span></span>\n                              <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"dropdown\"       data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                                      <span class=\"navbar-toggler-icon\"></span>\n                              </button>\n                              <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n                                    <div class=\"ml-auto\">\n                                            <ul class=\"navbar-nav\">\n\n                                                   \n                                                    <li class=\"nav-item active\">\n\n                                                       \n                                                       <a id=\"login\"  *ngIf=\"!user[0]\"\n                                                 \n                                                      (click)=\"loginWithTwitter()\"  style=\"color:white;\" >Log in</a>\n\n                                                 \n\n                                                        <a id=\"logout\" style=\"color:white;\"   (click)=\"logOut()\" *ngIf=\"user[0]\">Logout</a>\n\n                                                                                         \n                                                    </li>\n                                                     \n                                                        <li class=\"nav-item\">\n                                                            <a (click)=\"goToPlans()\" style=\"color:white;\">My Plans</a>\n                                                        </li>\n                                                       \n                                                        <li class=\"nav-item\">\n                                                            <a  routerLink=\"/about\" style=\"color:white;\">About</a>\n                                                        </li>\n                                            </ul>\n                                    </div>\n                          </div>\n                </nav>\n        </div>\n </div>\n\n\n <div class=\"item\" id=\"search\"><router-outlet></router-outlet></div>\n\n <div class=\"item\" id=\"footer\">\n     <!-- <div class=\"container\" id='creds'> -->\n        <div id=\"credits\" class=\"container\">\n                <div class= \"item\" id=\"madewith\"> Made with:</div>\n                <!-- <div class=\"item\" id=\"logos\">  -->\n                        <!-- <span class= \"item\" id=\"madewith\"> Made with:</span> -->\n                        <img width=\"46\" alt=\"Mongo Logo\" src=\"assets/img/mongo-notxt.png\">\n                        <img width=\"65\" alt=\"Express Logo\" src=\"assets/img/express2.png\">\n                        <img width=\"70\" alt=\"Angular Logo\" src=\"assets/img/angular.png\">\n                        <img width=\"57\" alt=\"Node Logo\" src=\"assets/img/node2.png\">\n                        <img width=\"52\" alt=\"Twitter Logo\" src=\"assets/img/twitter.png\">\n                        <img width=\"100\" alt=\"Yelp Logo\" src=\"assets/img/yelpstar.png\">  \n                        <!-- <span class=\"item\" id=\"byline\"> Made by: Mark Jones</span> -->\n                <!-- </div> -->\n                <div class=\"item\" id=\"byline\"> Made by: Mark Jones</div>\n        </div>\n   <!-- </div>    -->\n </div>\n   <div class=\"item\" id=\"left\"></div>\n   <div class=\"item\" id=\"right\"></div>\n   \n\n</div>\n  \n  \n  \n \n  \n  \n  \n\n\n\n\n\n  \n\n\n     \n\n\n  \n  \n  \n\n  \n  \n  \n\n"
 
 /***/ }),
 
@@ -298,27 +292,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _my_plans_my_plans_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./my-plans/my-plans.component */ "./src/app/my-plans/my-plans.component.ts");
-/* harmony import */ var _notifications_notifications_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./notifications/notifications.component */ "./src/app/notifications/notifications.component.ts");
-/* harmony import */ var _edit_plan_edit_plan_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./edit-plan/edit-plan.component */ "./src/app/edit-plan/edit-plan.component.ts");
-/* harmony import */ var _new_plan_new_plan_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./new-plan/new-plan.component */ "./src/app/new-plan/new-plan.component.ts");
-/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./src/node_modules/@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/http */ "./src/node_modules/@angular/http/esm5/http.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ "./src/node_modules/@angular/forms/esm5/forms.js");
-/* harmony import */ var _search_form_search_form_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./search-form/search-form.component */ "./src/app/search-form/search-form.component.ts");
-/* harmony import */ var _db_service_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./db-service.service */ "./src/app/db-service.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/router */ "./src/node_modules/@angular/router/esm5/router.js");
-/* harmony import */ var _reuse_strategy__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./reuse-strategy */ "./src/app/reuse-strategy.ts");
-/* harmony import */ var _interceptor__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../interceptor */ "./src/interceptor.ts");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
-/* harmony import */ var angularfire2__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! angularfire2 */ "./node_modules/angularfire2/index.js");
-/* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
-/* harmony import */ var angularfire2_firestore__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! angularfire2/firestore */ "./node_modules/angularfire2/firestore/index.js");
-/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../environments/environment.prod */ "./src/environments/environment.prod.ts");
-/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./authguard.guard */ "./src/app/authguard.guard.ts");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
-/* harmony import */ var _shared_select_required_validator_directive__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../shared/select-required-validator.directive */ "./src/shared/select-required-validator.directive.ts");
+/* harmony import */ var _edit_plan_edit_plan_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./edit-plan/edit-plan.component */ "./src/app/edit-plan/edit-plan.component.ts");
+/* harmony import */ var _new_plan_new_plan_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./new-plan/new-plan.component */ "./src/app/new-plan/new-plan.component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./src/node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/http */ "./src/node_modules/@angular/http/esm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./src/node_modules/@angular/forms/esm5/forms.js");
+/* harmony import */ var _search_form_search_form_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./search-form/search-form.component */ "./src/app/search-form/search-form.component.ts");
+/* harmony import */ var _db_service_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./db-service.service */ "./src/app/db-service.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ "./src/node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var _reuse_strategy__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./reuse-strategy */ "./src/app/reuse-strategy.ts");
+/* harmony import */ var _interceptor__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../interceptor */ "./src/interceptor.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var angularfire2__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! angularfire2 */ "./node_modules/angularfire2/index.js");
+/* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
+/* harmony import */ var angularfire2_firestore__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! angularfire2/firestore */ "./node_modules/angularfire2/firestore/index.js");
+/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../environments/environment.prod */ "./src/environments/environment.prod.ts");
+/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./authguard.guard */ "./src/app/authguard.guard.ts");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
+/* harmony import */ var _shared_select_required_validator_directive__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../shared/select-required-validator.directive */ "./src/shared/select-required-validator.directive.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./src/node_modules/@angular/platform-browser/esm5/animations.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -341,9 +333,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-//import { SearchService } from './search/search.service';
-
-
 
 
 
@@ -364,32 +353,30 @@ var AppModule = /** @class */ (function () {
                 _search_search_component__WEBPACK_IMPORTED_MODULE_3__["SearchComponent"],
                 _about_about_component__WEBPACK_IMPORTED_MODULE_4__["AboutComponent"],
                 _my_plans_my_plans_component__WEBPACK_IMPORTED_MODULE_6__["MyPlansComponent"],
-                _notifications_notifications_component__WEBPACK_IMPORTED_MODULE_7__["NotificationsComponent"],
-                _edit_plan_edit_plan_component__WEBPACK_IMPORTED_MODULE_8__["EditPlanComponent"],
-                _new_plan_new_plan_component__WEBPACK_IMPORTED_MODULE_9__["NewPlanComponent"],
-                _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_10__["SignUpComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
-                _search_form_search_form_component__WEBPACK_IMPORTED_MODULE_15__["SearchFormComponent"],
-                _shared_select_required_validator_directive__WEBPACK_IMPORTED_MODULE_27__["SelectRequiredValidatorDirective"]
+                _edit_plan_edit_plan_component__WEBPACK_IMPORTED_MODULE_7__["EditPlanComponent"],
+                _new_plan_new_plan_component__WEBPACK_IMPORTED_MODULE_8__["NewPlanComponent"],
+                _search_form_search_form_component__WEBPACK_IMPORTED_MODULE_12__["SearchFormComponent"],
+                _shared_select_required_validator_directive__WEBPACK_IMPORTED_MODULE_24__["SelectRequiredValidatorDirective"],
             ],
             imports: [
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__["NgbModule"],
-                _angular_http__WEBPACK_IMPORTED_MODULE_13__["HttpModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["ReactiveFormsModule"],
-                angularfire2__WEBPACK_IMPORTED_MODULE_21__["AngularFireModule"].initializeApp(_environments_environment_prod__WEBPACK_IMPORTED_MODULE_24__["environment"].firebase),
-                angularfire2_auth__WEBPACK_IMPORTED_MODULE_22__["AngularFireAuthModule"],
-                angularfire2_firestore__WEBPACK_IMPORTED_MODULE_23__["AngularFirestoreModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_26__["AgmCoreModule"].forRoot({ apiKey: "AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY" })
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__["NgbModule"],
+                _angular_http__WEBPACK_IMPORTED_MODULE_10__["HttpModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"],
+                angularfire2__WEBPACK_IMPORTED_MODULE_18__["AngularFireModule"].initializeApp(_environments_environment_prod__WEBPACK_IMPORTED_MODULE_21__["environment"].firebase),
+                angularfire2_auth__WEBPACK_IMPORTED_MODULE_19__["AngularFireAuthModule"],
+                angularfire2_firestore__WEBPACK_IMPORTED_MODULE_20__["AngularFirestoreModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_25__["BrowserAnimationsModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_23__["AgmCoreModule"].forRoot({ apiKey: "AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY" })
             ],
             providers: [
-                _db_service_service__WEBPACK_IMPORTED_MODULE_16__["DbServiceService"],
-                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_17__["RouteReuseStrategy"], useClass: _reuse_strategy__WEBPACK_IMPORTED_MODULE_18__["ReuseStrategy"] },
-                _interceptor__WEBPACK_IMPORTED_MODULE_19__["InterceptorModule"],
-                _auth_service__WEBPACK_IMPORTED_MODULE_20__["AuthService"],
-                _authguard_guard__WEBPACK_IMPORTED_MODULE_25__["AuthguardGuard"]
+                _db_service_service__WEBPACK_IMPORTED_MODULE_13__["DbServiceService"],
+                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouteReuseStrategy"], useClass: _reuse_strategy__WEBPACK_IMPORTED_MODULE_15__["ReuseStrategy"] },
+                _interceptor__WEBPACK_IMPORTED_MODULE_16__["InterceptorModule"],
+                _auth_service__WEBPACK_IMPORTED_MODULE_17__["AuthService"],
+                _authguard_guard__WEBPACK_IMPORTED_MODULE_22__["AuthguardGuard"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
@@ -709,69 +696,6 @@ var EditPlanComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/login/login.component.html":
-/*!********************************************!*\
-  !*** ./src/app/login/login.component.html ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- <div id=\"firebaseui-auth-container\"></div>\n<div id=\"loader\">Loading...</div> -->\n\n\n\n"
-
-/***/ }),
-
-/***/ "./src/app/login/login.component.scss":
-/*!********************************************!*\
-  !*** ./src/app/login/login.component.scss ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/login/login.component.ts":
-/*!******************************************!*\
-  !*** ./src/app/login/login.component.ts ***!
-  \******************************************/
-/*! exports provided: LoginComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./src/node_modules/@angular/core/esm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
-    }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
-    LoginComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-login',
-            template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
-            styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], LoginComponent);
-    return LoginComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/my-plans/my-plans.component.html":
 /*!**************************************************!*\
   !*** ./src/app/my-plans/my-plans.component.html ***!
@@ -884,7 +808,7 @@ var MyPlansComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name=\"twitter:site\" content=\"@yelp\" />\n<meta name=\"twitter:title\" content=\"{{plan.name}}\" />\n<meta name=\"twitter:description\" content=\"View details on Yelp!\" />\n<meta name=\"twitter:image\" content=\"{{plan.image_url}}\" />\n\n\n<div class=\"container-fluid\">\n\n    <h1>Make my new plan for: </h1>\n    \n     <div id=\"plans\">\n \n\n    <form id=\"edForm\" (ngSubmit)=\"onSubmit(edForm)\" class=\"form-inline\" #edform=\"ngForm\">\n\n    <div class=\"card\" style=\"width: 32rem;\">\n      <!-- <div class='card-header'></div> -->\n        <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image cap\">\n        <div class=\"card-body\">\n\n\n<p id=\"name\" class=\"card-text\">{{plan.name}}</p>\n<p id=\"title\" class=\"card-text\">{{plan.categories[0].title}}</p>\n  <p id=\"add1\" class=\"card-text\">{{plan.location.address1}}</p>\n  <p id=\"add2\" class=\"card-text\">{{plan.location.city}}, {{plan.location.state}}, {{plan.location.zip_code}}</p>\n<p id=\"phone\" class=\"card-text\">{{plan.display_phone}}</p>\n\n\n<div class=\"divide\">\n   <hr>\n</div>\n\n        <h5>Choose your date and time</h5>\n    <div class=\"form-row align-items-center\" [class.has-error]=\n    \"month.touched && month.invalid && day.touched && day.invalid && time.touched && time.invalid && ampm.touched && ampm.invalid && year.touched && year.invalid\"\n      \n    >\n                          <div class=\"col-auto\">\n                        <label class=\"sr-only\" for=\"month\">Month</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"month\"  name=\"month\" \n                        [(ngModel)] = \"plan.month\"\n                     \n                        required #month=\"ngModel\"\n                      \n                        >\n                        <option [ngValue]=\"undefined\" selected disabled>Month</option>  \n                          <option>January</option>\n                          <option>February</option>\n                          <option>March</option>\n                          <option>April</option>\n                          <option>May</option>\n                          <option>June</option>\n                          <option>July</option>\n                          <option>August</option>\n                          <option>September</option>\n                          <option>October</option>\n                          <option>November</option>\n                          <option>December</option>\n                        </select>\n                        <div class=\"help-block\" *ngIf=\"month.touched && month.pristine\"> \n                            Month selection required.\n                        </div> \n                   </div>\n\n                  <div class=\"col-auto\">\n                    <label class=\"sr-only\" for=\"day\">Day</label>\n                               \n                       <select class=\"custom-select my-1 mr-sm-2\" id=\"day\" name=\"day\" \n                       [(ngModel)] = \"plan.day\"\n                       required #day=\"ngModel\"\n                       >\n                       <option  [ngValue]=\"undefined\" selected disabled>Day</option>  \n                      <option>1</option>\n                      <option>2</option>\n                      <option>3</option>\n                      <option>4</option>\n                      <option>6</option>\n                      <option>7</option>\n                      <option>8</option>\n                      <option>9</option>\n                      <option>10</option>\n                      <option>11</option>\n                      <option>13</option>\n                      <option>14</option>\n                      <option>15</option>\n                      <option>16</option>\n                      <option>17</option>\n                      <option>18</option>\n                      <option>19</option>\n                      <option>20</option>\n                      <option>21</option>\n                      <option>22</option>\n                      <option>23</option>\n                      <option>24</option>\n                      <option>25</option>\n                      <option>26</option>\n                      <option>27</option>\n                      <option>28</option>\n                      <option>29</option>\n                      <option>30</option>\n                      <option>31</option>\n                    </select>\n                    <div class=\"help-block\" *ngIf=\"day.touched && day.invalid\"> \n                        Day selection required.\n                    </div> \n                    </div>\n      \n                 \n\n                  <div class=\"col-auto\">\n                   \n                        <label class=\"sr-only\" for=\"year\">Year</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"year\" name=\"year\"\n                        [(ngModel)] = \"plan.year\" required #year=\"ngModel\"\n                         >\n                               <option  [ngValue]=\"undefined\" selected disabled >Year</option>  \n                                <option value=\"2018\">2018</option>\n                                <option value=\"2019\">2019</option>\n                                <option value=\"2020\">2020</option>\n                                <option value=\"2021\">2021</option>\n                                <option value=\"2022\">2022</option>\n                                <option value=\"2023\">2023</option>\n                                <option value=\"2024\">2024</option>\n                                <option value=\"2025\">2025</option>\n                                <option value=\"2026\">2026</option>\n                                <option value=\"2027\">2027</option>\n                                <option value=\"2028\">2028</option>\n                                <option value=\"2029\">2029</option>\n                                <option value=\"2030\">2030</option>\n                              </select>\n                              <div class=\"help-block\" *ngIf=\"year.touched && year.invalid\"> \n                                 Year selection required.\n                              </div> \n                   </div>\n      </div>\n\n\n\n      <div class=\"form-row align-items-center\">\n           \n            <div class=\"col-auto\">\n                  \n      <select class=\"custom-select my-1 mr-sm-2\" id=\"hour\" name=\"time\"  [(ngModel)]=\"plan.time\"\n      required #time=\"ngModel\"\n      >\n        <option  [ngValue]=\"undefined\" selected disabled >Time</option>  \n        <option>1:00</option>\n        <option>1:30</option>\n        <option>2:00</option>\n        <option>2:30</option>\n        <option>3:00</option>\n        <option>3:30</option>\n        <option>4:00</option>\n        <option>4:30</option>\n        <option>5:00</option>\n        <option>5:30</option>\n        <option>6:00</option>\n        <option>6:30</option>\n        <option>7:00</option>\n        <option>7:30</option>\n        <option>8:00</option>\n        <option>8:30</option>\n        <option>9:00</option>\n        <option>9:30</option>\n        <option>10:00</option>\n        <option>10:30</option>\n        <option>11:00</option>\n        <option>11:30</option>\n        <option>12:00</option>\n        <option>12:30</option>\n      </select>\n      <div class=\"help-block\" *ngIf=\"time.touched && time.invalid\"> \n         Time selection required.\n       </div> \n</div>\n\n<div class=\"col-auto\">\n\n\n<select class=\"custom-select my-1 mr-sm-2\" id=\"ampm\" name=\"ampm\"  [(ngModel)]=\"plan.ampm\"  required #ampm=\"ngModel\">\n  <option  [ngValue]=\"undefined\" selected disabled>am/pm</option>  \n  <option>am</option>\n  <option>pm</option>\n</select>\n<div class=\"help-block\" *ngIf=\"ampm.touched && ampm.invalid\"> \n    ampm selection required.\n  </div> \n</div>\n\n\n</div>\n\n<div class=\"divide\">\n    <hr>\n </div>\n\n\n\n      </div>\n      <div class=\"card-footer text-muted item\" id='buttons'>\n\n\n\n\n\n\n\n\n        \n        <button [disabled]=\"month.pristine || day.pristine || year.pristine || time.pristine || ampm.pristine\"  class=\"btn btn-primary\" type=\"button\" (click)=\"savePlan()\">Save</button>\n        <button routerLink=\"/\"  class=\"btn btn-danger\">Cancel</button>\n        </div>\n    \n     \n   \n    </div>\n     </form>\n     </div>\n  </div>\n"
+module.exports = "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name=\"twitter:site\" content=\"@yelp\" />\n<meta name=\"twitter:title\" content=\"{{plan.name}}\" />\n<meta name=\"twitter:description\" content=\"View details on Yelp!\" />\n<meta name=\"twitter:image\" content=\"{{plan.image_url}}\" />\n\n\n<div class=\"container-fluid\">\n\n    <h1>Make my new plan for: </h1>\n    \n     <div id=\"plans\">\n \n\n    <form id=\"edForm\" (ngSubmit)=\"onSubmit(edForm)\" class=\"form-inline\" #edform=\"ngForm\">\n\n    <div class=\"card\" style=\"width: 32rem;\">\n      <!-- <div class='card-header'></div> -->\n        <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image cap\">\n        <div class=\"card-body\">\n\n\n<p id=\"name\" class=\"card-text\">{{plan.name}}</p>\n<p id=\"title\" class=\"card-text\">{{plan.categories[0].title}}</p>\n  <p id=\"add1\" class=\"card-text\">{{plan.location.address1}}</p>\n  <p id=\"add2\" class=\"card-text\">{{plan.location.city}}, {{plan.location.state}}, {{plan.location.zip_code}}</p>\n<p id=\"phone\" class=\"card-text\">{{plan.display_phone}}</p>\n\n\n<div class=\"divide\">\n   <hr>\n</div>\n\n        <h5>Choose your date and time</h5>\n    <div class=\"form-row align-items-center\" [class.has-error]=\n    \"month.touched && month.invalid && day.touched && day.invalid && time.touched && time.invalid && ampm.touched && ampm.invalid && year.touched && year.invalid\"\n      \n    >\n                          <div class=\"col-auto\">\n                        <label class=\"sr-only\" for=\"month\">Month</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"month\"  name=\"month\" \n                        [(ngModel)] = \"plan.month\"\n                     \n                        required #month=\"ngModel\"\n                      \n                        >\n                        <option [ngValue]=\"undefined\" selected disabled>Month</option>  \n                          <option>January</option>\n                          <option>February</option>\n                          <option>March</option>\n                          <option>April</option>\n                          <option>May</option>\n                          <option>June</option>\n                          <option>July</option>\n                          <option>August</option>\n                          <option>September</option>\n                          <option>October</option>\n                          <option>November</option>\n                          <option>December</option>\n                        </select>\n                        <div class=\"help-block\" *ngIf=\"month.touched && month.pristine\"> \n                            Month selection required.\n                        </div> \n                   </div>\n\n                  <div class=\"col-auto\">\n                    <label class=\"sr-only\" for=\"day\">Day</label>\n                               \n                       <select class=\"custom-select my-1 mr-sm-2\" id=\"day\" name=\"day\" \n                       [(ngModel)] = \"plan.day\"\n                       required #day=\"ngModel\"\n                       >\n                       <option  [ngValue]=\"undefined\" selected disabled>Day</option>  \n                      <option>1</option>\n                      <option>2</option>\n                      <option>3</option>\n                      <option>4</option>\n                      <option>6</option>\n                      <option>7</option>\n                      <option>8</option>\n                      <option>9</option>\n                      <option>10</option>\n                      <option>11</option>\n                      <option>13</option>\n                      <option>14</option>\n                      <option>15</option>\n                      <option>16</option>\n                      <option>17</option>\n                      <option>18</option>\n                      <option>19</option>\n                      <option>20</option>\n                      <option>21</option>\n                      <option>22</option>\n                      <option>23</option>\n                      <option>24</option>\n                      <option>25</option>\n                      <option>26</option>\n                      <option>27</option>\n                      <option>28</option>\n                      <option>29</option>\n                      <option>30</option>\n                      <option>31</option>\n                    </select>\n                    <div class=\"help-block\" *ngIf=\"day.touched && day.invalid\"> \n                        Day selection required.\n                    </div> \n                    </div>\n      \n                 \n\n                  <div class=\"col-auto\">\n                   \n                        <label class=\"sr-only\" for=\"year\">Year</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"year\" name=\"year\"\n                        [(ngModel)] = \"plan.year\" required #year=\"ngModel\"\n                         >\n                               <option  [ngValue]=\"undefined\" selected disabled >Year</option>  \n                                <option value=\"2018\">2018</option>\n                                <option value=\"2019\">2019</option>\n                                <option value=\"2020\">2020</option>\n                                <option value=\"2021\">2021</option>\n                                <option value=\"2022\">2022</option>\n                                <option value=\"2023\">2023</option>\n                                <option value=\"2024\">2024</option>\n                                <option value=\"2025\">2025</option>\n                                <option value=\"2026\">2026</option>\n                                <option value=\"2027\">2027</option>\n                                <option value=\"2028\">2028</option>\n                                <option value=\"2029\">2029</option>\n                                <option value=\"2030\">2030</option>\n                              </select>\n                              <div class=\"help-block\" *ngIf=\"year.touched && year.invalid\"> \n                                 Year selection required.\n                              </div> \n                   </div>\n      </div>\n\n\n\n      <div class=\"form-row align-items-center\">\n           \n            <div class=\"col-auto\">\n                  \n      <select class=\"custom-select my-1 mr-sm-2\" id=\"hour\" name=\"time\"  [(ngModel)]=\"plan.time\"\n      required #time=\"ngModel\"\n      >\n        <option  [ngValue]=\"undefined\" selected disabled >Time</option>  \n        <option>1:00</option>\n        <option>1:30</option>\n        <option>2:00</option>\n        <option>2:30</option>\n        <option>3:00</option>\n        <option>3:30</option>\n        <option>4:00</option>\n        <option>4:30</option>\n        <option>5:00</option>\n        <option>5:30</option>\n        <option>6:00</option>\n        <option>6:30</option>\n        <option>7:00</option>\n        <option>7:30</option>\n        <option>8:00</option>\n        <option>8:30</option>\n        <option>9:00</option>\n        <option>9:30</option>\n        <option>10:00</option>\n        <option>10:30</option>\n        <option>11:00</option>\n        <option>11:30</option>\n        <option>12:00</option>\n        <option>12:30</option>\n      </select>\n      <div class=\"help-block\" *ngIf=\"time.touched && time.invalid\"> \n         Time selection required.\n       </div> \n</div>\n\n<div class=\"col-auto\">\n\n\n<select class=\"custom-select my-1 mr-sm-2\" id=\"ampm\" name=\"ampm\"  [(ngModel)]=\"plan.ampm\"  required #ampm=\"ngModel\">\n  <option  [ngValue]=\"undefined\" selected disabled>am/pm</option>  \n  <option>am</option>\n  <option>pm</option>\n</select>\n<div class=\"help-block\" *ngIf=\"ampm.touched && ampm.invalid\"> \n    ampm selection required.\n  </div> \n</div>\n\n\n</div>\n\n<div class=\"divide\">\n    <hr>\n </div>\n\n\n\n      </div>\n      <div class=\"card-footer text-muted item\" id='buttons'>\n\n\n\n\n\n\n\n\n        \n        <button [disabled]=\"month.pristine || day.pristine || year.pristine || time.pristine || ampm.pristine\"  class=\"btn btn-primary\" type=\"button\" (click)=\"savePlan()\">Save</button>\n        <button routerLink=\"/\"  class=\"btn btn-danger\">Cancel</button>\n        </div>\n    \n       \n   \n    </div>\n     </form>\n     </div>\n\n\n\n\n     <div id=\"myModal\" class=\"modal\">\n\n      <!-- Modal content -->\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <span class=\"close\">&times;</span>\n          <h2>Modal Header</h2>\n        </div>\n        <div class=\"modal-body\">\n          <p>Some text in the Modal Body</p>\n          <p>Some other text...</p>\n        </div>\n        <div class=\"modal-footer\">\n          <h3>Modal Footer</h3>\n        </div>\n      </div>\n    \n    </div>\n\n\n\n\n\n\n\n  </div>\n"
 
 /***/ }),
 
@@ -895,7 +819,7 @@ module.exports = "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container-fluid {\n  margin-top: 4em;\n  text-align: center; }\n\nh1 {\n  margin-bottom: 1em; }\n\n#plans {\n  display: flex;\n  margin-top: 0px;\n  justify-content: center;\n  line-height: 0.7; }\n\n.card {\n  display: flex;\n  text-align: center;\n  margin-bottom: 5px; }\n\n.card p {\n    margin: 0px;\n    align-content: center;\n    line-height: 2em; }\n\n.card h4 {\n    margin-top: 1em; }\n\n.card-img-top {\n  height: 250px; }\n\n#npForm input {\n  text-align: center; }\n\n#add2 {\n  width: 90%;\n  margin: auto; }\n\n.divide {\n  height: 60px; }\n"
+module.exports = ".container-fluid {\n  margin-top: 4em;\n  text-align: center; }\n\nh1 {\n  margin-bottom: 1em; }\n\n#plans {\n  display: flex;\n  margin-top: 0px;\n  justify-content: center;\n  line-height: 0.7; }\n\n.card {\n  display: flex;\n  text-align: center;\n  margin-bottom: 5px; }\n\n.card p {\n    margin: 0px;\n    align-content: center;\n    line-height: 2em; }\n\n.card h4 {\n    margin-top: 1em; }\n\n.card-img-top {\n  height: 250px; }\n\n#npForm input {\n  text-align: center; }\n\n#add2 {\n  width: 90%;\n  margin: auto; }\n\n.divide {\n  height: 60px; }\n\n/* The Modal (background) */\n\n.modal {\n  display: none;\n  /* Hidden by default */\n  position: fixed;\n  /* Stay in place */\n  z-index: 1;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.4);\n  /* Black w/ opacity */ }\n\n/* Modal Content */\n\n.modal-content {\n  position: relative;\n  background-color: #fefefe;\n  margin: auto;\n  padding: 0;\n  border: 1px solid #888;\n  width: 80%;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n  -webkit-animation-name: animatetop;\n  -webkit-animation-duration: 0.4s;\n  animation-name: animatetop;\n  animation-duration: 0.4s; }\n\n/* Add Animation */\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n/* The Close Button */\n\n.close {\n  color: white;\n  float: right;\n  font-size: 28px;\n  font-weight: bold; }\n\n.close:hover,\n.close:focus {\n  color: #000;\n  text-decoration: none;\n  cursor: pointer; }\n\n.modal-header {\n  padding: 2px 16px;\n  background-color: #5cb85c;\n  color: white; }\n\n.modal-body {\n  padding: 2px 16px; }\n\n.modal-footer {\n  padding: 2px 16px;\n  background-color: #5cb85c;\n  color: white; }\n"
 
 /***/ }),
 
@@ -931,17 +855,18 @@ var NewPlanComponent = /** @class */ (function () {
         this.dbService = dbService;
         this.router = router;
         this.auth = auth;
-        // document.getElementById("month").setErrors({ 'invalid': true });
     }
     NewPlanComponent.prototype.savePlan = function () {
-        var _this = this;
-        this.dbService.savePlantoDb(this.plan).subscribe(function (results) {
-            var canplan = [];
-            canplan.push(_this.plan);
-            var user = canplan[0].user;
-            _this.router.navigate(['/myplans/' + user]);
-            return console.log("Plan saved!");
-        });
+        var x = document.getElementById("myModal");
+        x.style.display = "block";
+        setTimeout(function () { x.style.display = "none"; }, 3000);
+        // this.dbService.savePlantoDb(this.plan).subscribe(results=>{
+        //   var canplan=[];
+        //   canplan.push(this.plan);
+        //   var user = canplan[0].user;
+        //     this.router.navigate(['/myplans/'+user]);
+        // return console.log("Plan saved!");
+        // })
     };
     NewPlanComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -956,79 +881,6 @@ var NewPlanComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_db_service_service__WEBPACK_IMPORTED_MODULE_1__["DbServiceService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], NewPlanComponent);
     return NewPlanComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/notifications/notifications.component.html":
-/*!************************************************************!*\
-  !*** ./src/app/notifications/notifications.component.html ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container-fluid\">\n\n    <h1>My Friends' Plans</h1>\n\n     <div id=\"notifications\">\n    \n \n      <div class=\"card\" style=\"width: 32rem;\" *ngFor=\"let notification of notifications\">\n            <div class='card-header'>{{notification.inviter.twitterId}} is going to {{notification.plan.name}} on {{notification.plan.planDate}}, {{notification.plan.planTime}}</div>\n              <img class=\"card-img-top\" src={{notification.plan.image_url}} alt={{notification.plan.name}}>\n              <div class=\"card-body\">\n                  <h5 class=\"card-title\">{{notification.plan.name}}</h5>\n                <div class=\"card-text\" id='loc-info'>\n                    <p class=\"desc\">{{notification.plan.title}}</p>\n                    <p class=\"card-text\"> {{notification.plan.address1}} </p>\n                       <p class=\"card-text\">{{notification.plan.city}}</p>\n                      <p>Phone number: {{notification.plan.display_phone}}</p>\n                </div>\n              </div>\n            \n              <div class=\"card-footer text-muted item\" id='buttons'>\n                <h5>Please respond to {{notification.inviter.twitterId}}'s invitation.</h5>\n              <a routerLink=\"/myplans\"  class=\"btn btn-primary\">I'm Going!</a>\n              <a href=\"#\" class=\"btn btn-danger\">I'm Not Going</a> \n              </div>\n            </div> \n    \n\n\n    </div>\n    \n"
-
-/***/ }),
-
-/***/ "./src/app/notifications/notifications.component.scss":
-/*!************************************************************!*\
-  !*** ./src/app/notifications/notifications.component.scss ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".container-fluid {\n  margin-top: 4em;\n  text-align: center; }\n\nh1 {\n  margin-bottom: 1em; }\n\n#notifications {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-columns: (minmax(520px, 1fr))[auto-fit];\n      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));\n  grid-gap: 15px;\n  margin-top: 0px; }\n\n.card {\n  display: flex;\n  text-align: center;\n  margin-bottom: 5px; }\n\n.card p {\n    margin: 0px; }\n\n.card h4 {\n    margin-top: 1em; }\n\n.card .desc {\n    color: #7D5B34;\n    font-style: italic; }\n\n#msg {\n  visibility: hidden; }\n\n/* Popup container */\n\n.popup {\n  position: relative;\n  display: inline-block;\n  cursor: pointer; }\n\n/* The actual popup (appears on top) */\n\n.popup .popuptext {\n  visibility: hidden;\n  width: 160px;\n  background-color: #555;\n  color: #fff;\n  text-align: center;\n  border-radius: 6px;\n  padding: 8px 0;\n  position: absolute;\n  z-index: 1;\n  bottom: 125%;\n  left: 50%;\n  margin-left: -80px; }\n\n/* Popup arrow */\n\n/* Toggle this class when clicking on the popup container (hide and show the popup) */\n\n.popup .show {\n  visibility: visible;\n  -webkit-animation: fadeIn .5s;\n  animation: fadeIn .5s; }\n\n/* Add animation (fade in the popup) */\n\n@-webkit-keyframes fadeIn {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n@keyframes fadeIn {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n"
-
-/***/ }),
-
-/***/ "./src/app/notifications/notifications.component.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/notifications/notifications.component.ts ***!
-  \**********************************************************/
-/*! exports provided: NotificationsComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationsComponent", function() { return NotificationsComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./src/node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var _db_service_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db-service.service */ "./src/app/db-service.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var NotificationsComponent = /** @class */ (function () {
-    function NotificationsComponent(dbService) {
-        this.dbService = dbService;
-        this.notifications = [];
-    }
-    NotificationsComponent.prototype.ngOnInit = function () {
-        // Retrieve posts from the API
-        //  this.dbService.getAllNotifications("5adce300bd17584c200cf7eb").subscribe(notifications => {
-        //   this.notifications.push(notifications);
-        // this.notifications = notifications;
-        //   console.log(notifications);
-        // });
-    };
-    NotificationsComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-notifications',
-            template: __webpack_require__(/*! ./notifications.component.html */ "./src/app/notifications/notifications.component.html"),
-            styles: [__webpack_require__(/*! ./notifications.component.scss */ "./src/app/notifications/notifications.component.scss")]
-        }),
-        __metadata("design:paramtypes", [_db_service_service__WEBPACK_IMPORTED_MODULE_1__["DbServiceService"]])
-    ], NotificationsComponent);
-    return NotificationsComponent;
 }());
 
 
@@ -1226,69 +1078,6 @@ var SearchComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_db_service_service__WEBPACK_IMPORTED_MODULE_1__["DbServiceService"], _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], SearchComponent);
     return SearchComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/sign-up/sign-up.component.html":
-/*!************************************************!*\
-  !*** ./src/app/sign-up/sign-up.component.html ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  sign-up works!\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/sign-up/sign-up.component.scss":
-/*!************************************************!*\
-  !*** ./src/app/sign-up/sign-up.component.scss ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/sign-up/sign-up.component.ts":
-/*!**********************************************!*\
-  !*** ./src/app/sign-up/sign-up.component.ts ***!
-  \**********************************************/
-/*! exports provided: SignUpComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignUpComponent", function() { return SignUpComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./src/node_modules/@angular/core/esm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var SignUpComponent = /** @class */ (function () {
-    function SignUpComponent() {
-    }
-    SignUpComponent.prototype.ngOnInit = function () {
-    };
-    SignUpComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-sign-up',
-            template: __webpack_require__(/*! ./sign-up.component.html */ "./src/app/sign-up/sign-up.component.html"),
-            styles: [__webpack_require__(/*! ./sign-up.component.scss */ "./src/app/sign-up/sign-up.component.scss")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], SignUpComponent);
-    return SignUpComponent;
 }());
 
 

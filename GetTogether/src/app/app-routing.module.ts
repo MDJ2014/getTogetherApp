@@ -4,11 +4,8 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';
 import { MyPlansComponent } from './my-plans/my-plans.component';
-import {NotificationsComponent } from './notifications/notifications.component';
 import {EditPlanComponent } from './edit-plan/edit-plan.component';
 import {NewPlanComponent } from './new-plan/new-plan.component';
-import {SignUpComponent } from './sign-up/sign-up.component';
-import {LoginComponent } from './login/login.component';
 import { AuthguardGuard } from './authguard.guard';
 
 
@@ -44,11 +41,7 @@ const routes: Routes = [
       canActivate: [AuthguardGuard]
     },
   
-    {
-      path: 'login',
-      component: LoginComponent
-    }
-
+   
   ];
   
 
