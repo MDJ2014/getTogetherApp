@@ -1,0 +1,220 @@
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@yelp" />
+<meta name="twitter:title" content="{{plan.name}}" />
+<meta name="twitter:description" content="View details on Yelp!" />
+<meta name="twitter:image" content="{{plan.image_url}}" />
+
+
+<div class="container-fluid">
+
+    <h1>Make my new plan for: </h1>
+    
+     <div id="plans">
+ 
+
+    <form id="edForm" (ngSubmit)="onSubmit(edForm)" class="form-inline" #edform="ngForm">
+
+    <div class="card" style="width: 32rem;">
+      <!-- <div class='card-header'></div> -->
+        <img class="card-img-top" src={{plan.image_url}} alt="image cap">
+        <div class="card-body">
+
+
+<p id="name" class="card-text">{{plan.name}}</p>
+<p id="title" class="card-text">{{plan.categories[0].title}}</p>
+  <p id="add1" class="card-text">{{plan.location.address1}}</p>
+  <p id="add2" class="card-text">{{plan.location.city}}, {{plan.location.state}}, {{plan.location.zip_code}}</p>
+<p id="phone" class="card-text">{{plan.display_phone}}</p>
+
+
+<div class="divide">
+   <hr>
+</div>
+
+        <h5>Choose your date and time</h5>
+    <div class="form-row align-items-center" [class.has-error]=
+    "month.touched && month.invalid && day.touched && day.invalid && time.touched && time.invalid && ampm.touched && ampm.invalid && year.touched && year.invalid"
+      
+    >
+                          <div class="col-auto">
+                        <label class="sr-only" for="month">Month</label>
+                        <select class="custom-select my-1 mr-sm-2" id="month"  name="month" 
+                        [(ngModel)] = "plan.month"
+                     
+                        required #month="ngModel"
+                      
+                        >
+                        <option [ngValue]="undefined" selected disabled>Month</option>  
+                          <option>January</option>
+                          <option>February</option>
+                          <option>March</option>
+                          <option>April</option>
+                          <option>May</option>
+                          <option>June</option>
+                          <option>July</option>
+                          <option>August</option>
+                          <option>September</option>
+                          <option>October</option>
+                          <option>November</option>
+                          <option>December</option>
+                        </select>
+                        <div class="help-block" *ngIf="month.touched && month.pristine"> 
+                            Month selection required.
+                        </div> 
+                   </div>
+
+                  <div class="col-auto">
+                    <label class="sr-only" for="day">Day</label>
+                               
+                       <select class="custom-select my-1 mr-sm-2" id="day" name="day" 
+                       [(ngModel)] = "plan.day"
+                       required #day="ngModel"
+                       >
+                       <option  [ngValue]="undefined" selected disabled>Day</option>  
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>13</option>
+                      <option>14</option>
+                      <option>15</option>
+                      <option>16</option>
+                      <option>17</option>
+                      <option>18</option>
+                      <option>19</option>
+                      <option>20</option>
+                      <option>21</option>
+                      <option>22</option>
+                      <option>23</option>
+                      <option>24</option>
+                      <option>25</option>
+                      <option>26</option>
+                      <option>27</option>
+                      <option>28</option>
+                      <option>29</option>
+                      <option>30</option>
+                      <option>31</option>
+                    </select>
+                    <div class="help-block" *ngIf="day.touched && day.invalid"> 
+                        Day selection required.
+                    </div> 
+                    </div>
+      
+                 
+
+                  <div class="col-auto">
+                   
+                        <label class="sr-only" for="year">Year</label>
+                        <select class="custom-select my-1 mr-sm-2" id="year" name="year"
+                        [(ngModel)] = "plan.year" required #year="ngModel"
+                         >
+                               <option  [ngValue]="undefined" selected disabled >Year</option>  
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                              </select>
+                              <div class="help-block" *ngIf="year.touched && year.invalid"> 
+                                 Year selection required.
+                              </div> 
+                   </div>
+      </div>
+
+
+
+      <div class="form-row align-items-center">
+           
+            <div class="col-auto">
+                  
+      <select class="custom-select my-1 mr-sm-2" id="hour" name="time"  [(ngModel)]="plan.time"
+      required #time="ngModel"
+      >
+        <option  [ngValue]="undefined" selected disabled >Time</option>  
+        <option>1:00</option>
+        <option>1:30</option>
+        <option>2:00</option>
+        <option>2:30</option>
+        <option>3:00</option>
+        <option>3:30</option>
+        <option>4:00</option>
+        <option>4:30</option>
+        <option>5:00</option>
+        <option>5:30</option>
+        <option>6:00</option>
+        <option>6:30</option>
+        <option>7:00</option>
+        <option>7:30</option>
+        <option>8:00</option>
+        <option>8:30</option>
+        <option>9:00</option>
+        <option>9:30</option>
+        <option>10:00</option>
+        <option>10:30</option>
+        <option>11:00</option>
+        <option>11:30</option>
+        <option>12:00</option>
+        <option>12:30</option>
+      </select>
+      <div class="help-block" *ngIf="time.touched && time.invalid"> 
+         Time selection required.
+       </div> 
+</div>
+
+<div class="col-auto">
+
+
+<select class="custom-select my-1 mr-sm-2" id="ampm" name="ampm"  [(ngModel)]="plan.ampm"  required #ampm="ngModel">
+  <option  [ngValue]="undefined" selected disabled>am/pm</option>  
+  <option>am</option>
+  <option>pm</option>
+</select>
+<div class="help-block" *ngIf="ampm.touched && ampm.invalid"> 
+    ampm selection required.
+  </div> 
+</div>
+
+
+</div>
+
+<div class="divide">
+    <hr>
+ </div>
+
+
+
+      </div>
+      <div class="card-footer text-muted item" id='buttons'>
+
+
+
+
+
+
+
+
+        
+        <button [disabled]="month.pristine || day.pristine || year.pristine || time.pristine || ampm.pristine"  class="btn btn-primary" type="button" (click)="savePlan()">Save</button>
+        <button routerLink="/"  class="btn btn-danger">Cancel</button>
+        </div>
+    
+     
+   
+    </div>
+     </form>
+     </div>
+  </div>

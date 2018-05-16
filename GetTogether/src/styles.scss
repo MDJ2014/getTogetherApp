@@ -1,0 +1,57 @@
+
+
+//  @include font-face('Abolition Regular', abolition-regular);
+
+
+//vars
+$white       :#FAFDFF;
+$black        :#000;
+$kabul        :#575042;
+$clay          :#7D5B34;
+$flatblack  :#262C4A;
+$chambray :#3E4D96;
+$bluegray   :#5C6696;
+$medgray   :#9DA2B8;
+$bluehaze   :#C7CADC;
+
+
+//Functional color vars
+$color-primary        : $flatblack;
+$color-secondary    : $bluegray;
+
+$color-text-light    : $white;
+$color-text-base    : $medgray;
+$color-text-dark    : $black;
+
+$color-border-light : $bluehaze;;
+$color-border-dark  : $bluegray;
+
+$color-link-default : $clay;
+$color-link-visited : $kabul;
+
+$color-shadow       : $medgray;
+$color-body           : $white;
+
+//fonts
+$stack-sans-serif    :  'Helvetica', Arial, sans-serif;
+$stack-helvetica       : 'Helvetica Neue', $stack-sans-serif ;
+$stack-abolition       : 'Abolition Regular', $stack-sans-serif;
+
+//border radius
+$br: 10px;
+
+
+
+//assets
+$path-image: './assets/img';   //in rule use url('#{$path-image}/name.png') no-repeat center;
+$path-font: './assets/fonts';
+
+
+//mediaQuery
+$break-tiny: '(max-width: 350px)';
+$break-verysmall: '(max-width: 450px)';
+$break-small: '(max-width: 600px)';
+$break-narrow: '(max-width: 800px)';
+$break-med: '(max-width: 996px)';
+$break-wide: '(max-width: 1200px)';
+

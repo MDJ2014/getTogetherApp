@@ -1,0 +1,54 @@
+<div class="container-fluid">
+ 
+<h1>My Plans</h1>
+
+ <div id="plans">
+
+
+
+    <div class="card" style="width: 32rem;" *ngFor="let plan of plans; let i = index">
+        <div id = "plan{{i}}" class='card-header'>{{plan.month}} {{plan.day}},{{plan.year}} {{plan.time}}{{plan.ampm}}</div>
+          <img class="card-img-top" src={{plan.image_url}} alt="image">
+          <div class="card-body">
+              <h5 class="card-title">{{plan.name}}</h5>
+            <div class="card-text" id='loc-info'>
+                <p class="desc">{{plan.categories[0].title}}</p>
+                <p class="card-text"> {{plan.location.address1}} </p>
+                 <p class="card-text">{{plan.location.city}}{{plan.location.state}},{{plan.location.zip_code}}</p>
+                  <p>Phone number: {{plan.display_phone}}</p>
+            </div>
+          </div>
+    
+          <div id="map{{i}}"><img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=510x250&maptype=roadmap&markers={{plan.coordinates.latitude}},{{plan.coordinates.longitude}}&key=AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY"></div>
+
+          <div class="card-footer text-muted item" id='buttons'>
+
+             <a type="button" id={{i}} class="btn btn-primary"  style="color:white;"  (click)="toggle($event)" routerLink="/editplan">Edit</a>
+
+             
+         
+
+
+
+
+<!-- 
+             <a type="button" id=can{{i}} class="btn btn-primary hidden"  style="color:white;" (click)="toggle($event)">Cancel</a> -->
+
+             
+             <!-- (click)="toggle($event)" -->
+
+            
+
+
+          </div>
+        </div>
+    
+
+</div>
+
+
+
+
+
+
+</div>

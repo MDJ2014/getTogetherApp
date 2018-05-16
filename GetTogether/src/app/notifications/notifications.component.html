@@ -1,0 +1,31 @@
+<div class="container-fluid">
+
+    <h1>My Friends' Plans</h1>
+
+     <div id="notifications">
+    
+ 
+      <div class="card" style="width: 32rem;" *ngFor="let notification of notifications">
+            <div class='card-header'>{{notification.inviter.twitterId}} is going to {{notification.plan.name}} on {{notification.plan.planDate}}, {{notification.plan.planTime}}</div>
+              <img class="card-img-top" src={{notification.plan.image_url}} alt={{notification.plan.name}}>
+              <div class="card-body">
+                  <h5 class="card-title">{{notification.plan.name}}</h5>
+                <div class="card-text" id='loc-info'>
+                    <p class="desc">{{notification.plan.title}}</p>
+                    <p class="card-text"> {{notification.plan.address1}} </p>
+                       <p class="card-text">{{notification.plan.city}}</p>
+                      <p>Phone number: {{notification.plan.display_phone}}</p>
+                </div>
+              </div>
+            
+              <div class="card-footer text-muted item" id='buttons'>
+                <h5>Please respond to {{notification.inviter.twitterId}}'s invitation.</h5>
+              <a routerLink="/myplans"  class="btn btn-primary">I'm Going!</a>
+              <a href="#" class="btn btn-danger">I'm Not Going</a> 
+              </div>
+            </div> 
+    
+
+
+    </div>
+    

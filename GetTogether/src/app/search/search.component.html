@@ -1,0 +1,64 @@
+
+
+  <div class="item" id="headline"><span>Welcome to GetTogether!  An easy way to find local restaurants and bars via Yelp!, make plans for the evening and invite all of your friends via Twitter.</span></div>
+
+<div class="container" id="search-container">
+
+<app-search-form (searchClicked)="sendSearch($event)"></app-search-form>
+
+
+    <div>Search for entertainment locations in your area with: <span><img src="../../assets/img/yelpsmall.png" alt="Yelp"class="yelp"></span></div>
+</div>
+
+<div id="divider">
+<hr>
+</div>
+
+<div id="results">
+
+
+<div class="locations"  *ngFor="let location of locations; let i = index">
+
+      <div class="card" id = {{i}} style="width: 18rem;">
+        <img class="card-img-top" src="{{location.image_url}}" alt="image cap">
+        <div class="card-body">
+            <span id="rev-link"><a  href="{{location.url}}" target="_blank"><img src="../../assets/img/yelpsmall.png" alt="Read Yelp reviews"></a></span>
+          <h5 class="card-title">{{location.name}}</h5>
+          <p><img src="../../assets/img/{{location.rating}}.png" alt="rating"><span class="numRatings">{{location.review_count}} reviews</span></p>
+          <p class="card-text">{{location.price}}</p>
+          <p class="desc">{{location.categories[0].title}}</p>
+          <p class="card-text">{{location.location.address1}}</p>
+          <p class="card-text">{{location.location.city}}, <span>{{location.location.state}}, {{location.location.zip_code}}</span></p>
+            <p class="card-text">{{location.display_phone}}</p>
+
+            <a *ngIf="(auth.user | async)" id={{i}} class="btn btn-primary"(click)="onClick($event)" routerLink="/newplan">I'm Going</a>
+       
+            <a  *ngIf="!(auth.user | async)"class="btn btn-warning" >Please Log In</a>
+
+
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- businesses.id
+businesses.rating
+businesses.coordinates.latitude
+businesses.coordinates.longitude -->
+
+
+
+
+
+
+
+
