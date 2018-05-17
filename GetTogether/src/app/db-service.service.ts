@@ -78,7 +78,7 @@ savePlantoDb(plan):Observable<any>{
 }
 
 twitterlogin(creds){
-  console.log("from dbservice   "+ creds);
+ 
 
 return creds;
 

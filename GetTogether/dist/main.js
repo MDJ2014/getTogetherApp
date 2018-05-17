@@ -250,7 +250,7 @@ var AppComponent = /** @class */ (function () {
     };
     ;
     AppComponent.prototype.saveUser = function (usercreds) {
-        // this.authService.setAuthUser(usercreds);
+        this.authService.setAuthUser(usercreds);
         this.dbService.saveUserToDb(usercreds).subscribe(function (results) {
             console.log("User saved");
         });
@@ -403,6 +403,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./src/node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var rxjs_Rx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/Rx */ "./node_modules/rxjs/_esm5/Rx.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -416,12 +417,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = /** @class */ (function () {
     function AuthService(afAuth, router) {
         this.afAuth = afAuth;
         this.router = router;
+        this.AuthUser$ = new rxjs_Rx__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.user = afAuth.authState;
     }
+    AuthService.prototype.getAuthUser = function () { return this.AuthUser$; };
+    AuthService.prototype.setAuthUser = function (creds) { this.AuthUser$.next(creds); };
     AuthService.prototype.twitterLogin = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -574,7 +579,6 @@ var DbServiceService = /** @class */ (function () {
             .map(function (data) { return data.json(); });
     };
     DbServiceService.prototype.twitterlogin = function (creds) {
-        console.log("from dbservice   " + creds);
         return creds;
         // return this.http.get('/api/auth', creds)
         // .map(res=> res.json());
@@ -730,9 +734,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyPlansComponent", function() { return MyPlansComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./src/node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var _db_service_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db-service.service */ "./src/app/db-service.service.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./src/node_modules/@angular/common/esm5/common.js");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./src/node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./src/node_modules/@angular/router/esm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -742,17 +745,13 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
 
 
 
 
 var MyPlansComponent = /** @class */ (function () {
-    function MyPlansComponent(dbService, router, route, auth, document) {
+    //@Inject(DOCUMENT) document
+    function MyPlansComponent(dbService, router, route, auth) {
         this.dbService = dbService;
         this.router = router;
         this.route = route;
@@ -782,17 +781,13 @@ var MyPlansComponent = /** @class */ (function () {
         var planToEdit = this.plans[index];
         this.dbService.addPlanToUpdate(planToEdit);
     };
-    MyPlansComponent.prototype.convertStringToNumber = function (value) {
-        return +value;
-    };
     MyPlansComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-my-plans',
             template: __webpack_require__(/*! ./my-plans.component.html */ "./src/app/my-plans/my-plans.component.html"),
             styles: [__webpack_require__(/*! ./my-plans.component.scss */ "./src/app/my-plans/my-plans.component.scss")]
         }),
-        __param(4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"])),
-        __metadata("design:paramtypes", [_db_service_service__WEBPACK_IMPORTED_MODULE_1__["DbServiceService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"], _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], Object])
+        __metadata("design:paramtypes", [_db_service_service__WEBPACK_IMPORTED_MODULE_1__["DbServiceService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], MyPlansComponent);
     return MyPlansComponent;
 }());
@@ -808,7 +803,7 @@ var MyPlansComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name=\"twitter:site\" content=\"@yelp\" />\n<meta name=\"twitter:title\" content=\"{{plan.name}}\" />\n<meta name=\"twitter:description\" content=\"View details on Yelp!\" />\n<meta name=\"twitter:image\" content=\"{{plan.image_url}}\" />\n\n\n<div class=\"container-fluid\">\n\n    <h1>Make my new plan for: </h1>\n    \n     <div id=\"plans\">\n \n\n    <form id=\"edForm\" (ngSubmit)=\"onSubmit(edForm)\" class=\"form-inline\" #edform=\"ngForm\">\n\n    <div class=\"card\" style=\"width: 32rem;\">\n      <!-- <div class='card-header'></div> -->\n        <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image cap\">\n        <div class=\"card-body\">\n\n\n<p id=\"name\" class=\"card-text\">{{plan.name}}</p>\n<p id=\"title\" class=\"card-text\">{{plan.categories[0].title}}</p>\n  <p id=\"add1\" class=\"card-text\">{{plan.location.address1}}</p>\n  <p id=\"add2\" class=\"card-text\">{{plan.location.city}}, {{plan.location.state}}, {{plan.location.zip_code}}</p>\n<p id=\"phone\" class=\"card-text\">{{plan.display_phone}}</p>\n\n\n<div class=\"divide\">\n   <hr>\n</div>\n\n        <h5>Choose your date and time</h5>\n    <div class=\"form-row align-items-center\" [class.has-error]=\n    \"month.touched && month.invalid && day.touched && day.invalid && time.touched && time.invalid && ampm.touched && ampm.invalid && year.touched && year.invalid\"\n      \n    >\n                          <div class=\"col-auto\">\n                        <label class=\"sr-only\" for=\"month\">Month</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"month\"  name=\"month\" \n                        [(ngModel)] = \"plan.month\"\n                     \n                        required #month=\"ngModel\"\n                      \n                        >\n                        <option [ngValue]=\"undefined\" selected disabled>Month</option>  \n                          <option>January</option>\n                          <option>February</option>\n                          <option>March</option>\n                          <option>April</option>\n                          <option>May</option>\n                          <option>June</option>\n                          <option>July</option>\n                          <option>August</option>\n                          <option>September</option>\n                          <option>October</option>\n                          <option>November</option>\n                          <option>December</option>\n                        </select>\n                        <div class=\"help-block\" *ngIf=\"month.touched && month.pristine\"> \n                            Month selection required.\n                        </div> \n                   </div>\n\n                  <div class=\"col-auto\">\n                    <label class=\"sr-only\" for=\"day\">Day</label>\n                               \n                       <select class=\"custom-select my-1 mr-sm-2\" id=\"day\" name=\"day\" \n                       [(ngModel)] = \"plan.day\"\n                       required #day=\"ngModel\"\n                       >\n                       <option  [ngValue]=\"undefined\" selected disabled>Day</option>  \n                      <option>1</option>\n                      <option>2</option>\n                      <option>3</option>\n                      <option>4</option>\n                      <option>6</option>\n                      <option>7</option>\n                      <option>8</option>\n                      <option>9</option>\n                      <option>10</option>\n                      <option>11</option>\n                      <option>13</option>\n                      <option>14</option>\n                      <option>15</option>\n                      <option>16</option>\n                      <option>17</option>\n                      <option>18</option>\n                      <option>19</option>\n                      <option>20</option>\n                      <option>21</option>\n                      <option>22</option>\n                      <option>23</option>\n                      <option>24</option>\n                      <option>25</option>\n                      <option>26</option>\n                      <option>27</option>\n                      <option>28</option>\n                      <option>29</option>\n                      <option>30</option>\n                      <option>31</option>\n                    </select>\n                    <div class=\"help-block\" *ngIf=\"day.touched && day.invalid\"> \n                        Day selection required.\n                    </div> \n                    </div>\n      \n                 \n\n                  <div class=\"col-auto\">\n                   \n                        <label class=\"sr-only\" for=\"year\">Year</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"year\" name=\"year\"\n                        [(ngModel)] = \"plan.year\" required #year=\"ngModel\"\n                         >\n                               <option  [ngValue]=\"undefined\" selected disabled >Year</option>  \n                                <option value=\"2018\">2018</option>\n                                <option value=\"2019\">2019</option>\n                                <option value=\"2020\">2020</option>\n                                <option value=\"2021\">2021</option>\n                                <option value=\"2022\">2022</option>\n                                <option value=\"2023\">2023</option>\n                                <option value=\"2024\">2024</option>\n                                <option value=\"2025\">2025</option>\n                                <option value=\"2026\">2026</option>\n                                <option value=\"2027\">2027</option>\n                                <option value=\"2028\">2028</option>\n                                <option value=\"2029\">2029</option>\n                                <option value=\"2030\">2030</option>\n                              </select>\n                              <div class=\"help-block\" *ngIf=\"year.touched && year.invalid\"> \n                                 Year selection required.\n                              </div> \n                   </div>\n      </div>\n\n\n\n      <div class=\"form-row align-items-center\">\n           \n            <div class=\"col-auto\">\n                  \n      <select class=\"custom-select my-1 mr-sm-2\" id=\"hour\" name=\"time\"  [(ngModel)]=\"plan.time\"\n      required #time=\"ngModel\"\n      >\n        <option  [ngValue]=\"undefined\" selected disabled >Time</option>  \n        <option>1:00</option>\n        <option>1:30</option>\n        <option>2:00</option>\n        <option>2:30</option>\n        <option>3:00</option>\n        <option>3:30</option>\n        <option>4:00</option>\n        <option>4:30</option>\n        <option>5:00</option>\n        <option>5:30</option>\n        <option>6:00</option>\n        <option>6:30</option>\n        <option>7:00</option>\n        <option>7:30</option>\n        <option>8:00</option>\n        <option>8:30</option>\n        <option>9:00</option>\n        <option>9:30</option>\n        <option>10:00</option>\n        <option>10:30</option>\n        <option>11:00</option>\n        <option>11:30</option>\n        <option>12:00</option>\n        <option>12:30</option>\n      </select>\n      <div class=\"help-block\" *ngIf=\"time.touched && time.invalid\"> \n         Time selection required.\n       </div> \n</div>\n\n<div class=\"col-auto\">\n\n\n<select class=\"custom-select my-1 mr-sm-2\" id=\"ampm\" name=\"ampm\"  [(ngModel)]=\"plan.ampm\"  required #ampm=\"ngModel\">\n  <option  [ngValue]=\"undefined\" selected disabled>am/pm</option>  \n  <option>am</option>\n  <option>pm</option>\n</select>\n<div class=\"help-block\" *ngIf=\"ampm.touched && ampm.invalid\"> \n    ampm selection required.\n  </div> \n</div>\n\n\n</div>\n\n<div class=\"divide\">\n    <hr>\n </div>\n\n\n\n      </div>\n      <div class=\"card-footer text-muted item\" id='buttons'>\n\n\n\n\n\n\n\n\n        \n        <button [disabled]=\"month.pristine || day.pristine || year.pristine || time.pristine || ampm.pristine\"  class=\"btn btn-primary\" type=\"button\" (click)=\"savePlan()\">Save</button>\n        <button routerLink=\"/\"  class=\"btn btn-danger\">Cancel</button>\n        </div>\n    \n       \n   \n    </div>\n     </form>\n     </div>\n\n\n\n\n     <div id=\"myModal\" class=\"modal\">\n\n      <!-- Modal content -->\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <span class=\"close\">&times;</span>\n          <h2>Modal Header</h2>\n        </div>\n        <div class=\"modal-body\">\n          <p>Some text in the Modal Body</p>\n          <p>Some other text...</p>\n        </div>\n        <div class=\"modal-footer\">\n          <h3>Modal Footer</h3>\n        </div>\n      </div>\n    \n    </div>\n\n\n\n\n\n\n\n  </div>\n"
+module.exports = "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name=\"twitter:site\" content=\"@yelp\" />\n<meta name=\"twitter:title\" content=\"{{plan.name}}\" />\n<meta name=\"twitter:description\" content=\"View details on Yelp!\" />\n<meta name=\"twitter:image\" content=\"{{plan.image_url}}\" />\n\n\n<div class=\"container-fluid\">\n\n    <h1>Make my new plan for: </h1>\n    \n     <div id=\"plans\">\n \n\n    <form id=\"edForm\" (ngSubmit)=\"onSubmit(edForm)\" class=\"form-inline\" #edform=\"ngForm\">\n\n    <div class=\"card\" style=\"width: 32rem;\">\n      <!-- <div class='card-header'></div> -->\n        <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image cap\">\n        <div class=\"card-body\">\n\n\n<p id=\"name\" class=\"card-text\">{{plan.name}}</p>\n<p id=\"title\" class=\"card-text\">{{plan.categories[0].title}}</p>\n  <p id=\"add1\" class=\"card-text\">{{plan.location.address1}}</p>\n  <p id=\"add2\" class=\"card-text\">{{plan.location.city}}, {{plan.location.state}}, {{plan.location.zip_code}}</p>\n<p id=\"phone\" class=\"card-text\">{{plan.display_phone}}</p>\n\n\n<div class=\"divide\">\n   <hr>\n</div>\n\n        <h5>Choose your date and time</h5>\n    <div class=\"form-row align-items-center\" [class.has-error]=\n    \"month.touched && month.invalid && day.touched && day.invalid && time.touched && time.invalid && ampm.touched && ampm.invalid && year.touched && year.invalid\"\n      \n    >\n                          <div class=\"col-auto\">\n                        <label class=\"sr-only\" for=\"month\">Month</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"month\"  name=\"month\" \n                        [(ngModel)] = \"plan.month\"\n                     \n                        required #month=\"ngModel\"\n                      \n                        >\n                        <option [ngValue]=\"undefined\" selected disabled>Month</option>  \n                          <option>January</option>\n                          <option>February</option>\n                          <option>March</option>\n                          <option>April</option>\n                          <option>May</option>\n                          <option>June</option>\n                          <option>July</option>\n                          <option>August</option>\n                          <option>September</option>\n                          <option>October</option>\n                          <option>November</option>\n                          <option>December</option>\n                        </select>\n                        <div class=\"help-block\" *ngIf=\"month.touched && month.pristine\"> \n                            Month selection required.\n                        </div> \n                   </div>\n\n                  <div class=\"col-auto\">\n                    <label class=\"sr-only\" for=\"day\">Day</label>\n                               \n                       <select class=\"custom-select my-1 mr-sm-2\" id=\"day\" name=\"day\" \n                       [(ngModel)] = \"plan.day\"\n                       required #day=\"ngModel\"\n                       >\n                       <option  [ngValue]=\"undefined\" selected disabled>Day</option>  \n                      <option>1</option>\n                      <option>2</option>\n                      <option>3</option>\n                      <option>4</option>\n                      <option>6</option>\n                      <option>7</option>\n                      <option>8</option>\n                      <option>9</option>\n                      <option>10</option>\n                      <option>11</option>\n                      <option>13</option>\n                      <option>14</option>\n                      <option>15</option>\n                      <option>16</option>\n                      <option>17</option>\n                      <option>18</option>\n                      <option>19</option>\n                      <option>20</option>\n                      <option>21</option>\n                      <option>22</option>\n                      <option>23</option>\n                      <option>24</option>\n                      <option>25</option>\n                      <option>26</option>\n                      <option>27</option>\n                      <option>28</option>\n                      <option>29</option>\n                      <option>30</option>\n                      <option>31</option>\n                    </select>\n                    <div class=\"help-block\" *ngIf=\"day.touched && day.invalid\"> \n                        Day selection required.\n                    </div> \n                    </div>\n      \n                 \n\n                  <div class=\"col-auto\">\n                   \n                        <label class=\"sr-only\" for=\"year\">Year</label>\n                        <select class=\"custom-select my-1 mr-sm-2\" id=\"year\" name=\"year\"\n                        [(ngModel)] = \"plan.year\" required #year=\"ngModel\"\n                         >\n                               <option  [ngValue]=\"undefined\" selected disabled >Year</option>  \n                                <option value=\"2018\">2018</option>\n                                <option value=\"2019\">2019</option>\n                                <option value=\"2020\">2020</option>\n                                <option value=\"2021\">2021</option>\n                                <option value=\"2022\">2022</option>\n                                <option value=\"2023\">2023</option>\n                                <option value=\"2024\">2024</option>\n                                <option value=\"2025\">2025</option>\n                                <option value=\"2026\">2026</option>\n                                <option value=\"2027\">2027</option>\n                                <option value=\"2028\">2028</option>\n                                <option value=\"2029\">2029</option>\n                                <option value=\"2030\">2030</option>\n                              </select>\n                              <div class=\"help-block\" *ngIf=\"year.touched && year.invalid\"> \n                                 Year selection required.\n                              </div> \n                   </div>\n      </div>\n\n\n\n      <div class=\"form-row align-items-center\">\n           \n            <div class=\"col-auto\">\n                  \n      <select class=\"custom-select my-1 mr-sm-2\" id=\"hour\" name=\"time\"  [(ngModel)]=\"plan.time\"\n      required #time=\"ngModel\"\n      >\n        <option  [ngValue]=\"undefined\" selected disabled >Time</option>  \n        <option>1:00</option>\n        <option>1:30</option>\n        <option>2:00</option>\n        <option>2:30</option>\n        <option>3:00</option>\n        <option>3:30</option>\n        <option>4:00</option>\n        <option>4:30</option>\n        <option>5:00</option>\n        <option>5:30</option>\n        <option>6:00</option>\n        <option>6:30</option>\n        <option>7:00</option>\n        <option>7:30</option>\n        <option>8:00</option>\n        <option>8:30</option>\n        <option>9:00</option>\n        <option>9:30</option>\n        <option>10:00</option>\n        <option>10:30</option>\n        <option>11:00</option>\n        <option>11:30</option>\n        <option>12:00</option>\n        <option>12:30</option>\n      </select>\n      <div class=\"help-block\" *ngIf=\"time.touched && time.invalid\"> \n         Time selection required.\n       </div> \n</div>\n\n<div class=\"col-auto\">\n\n\n<select class=\"custom-select my-1 mr-sm-2\" id=\"ampm\" name=\"ampm\"  [(ngModel)]=\"plan.ampm\"  required #ampm=\"ngModel\">\n  <option  [ngValue]=\"undefined\" selected disabled>am/pm</option>  \n  <option>am</option>\n  <option>pm</option>\n</select>\n<div class=\"help-block\" *ngIf=\"ampm.touched && ampm.invalid\"> \n    ampm selection required.\n  </div> \n</div>\n\n\n</div>\n\n<div class=\"divide\">\n    <hr>\n </div>\n\n\n\n      </div>\n      <div class=\"card-footer text-muted item\" id='buttons'>\n\n\n\n\n\n\n\n\n        \n        <button [disabled]=\"month.pristine || day.pristine || year.pristine || time.pristine || ampm.pristine\"  class=\"btn btn-primary\" type=\"button\" (click)=\"savePlan()\">Save</button>\n        <button routerLink=\"/\"  class=\"btn btn-danger\">Cancel</button>\n        </div>\n    \n       \n   \n    </div>\n     </form>\n     </div>\n\n\n\n\n     <div id=\"myModal\" class=\"modal\">\n\n      <!-- Modal content -->\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <span class=\"close\">&times;</span>\n         </div>\n        <div class=\"modal-body\">\n            <h2>Success!</h2>\n          <p>Plan saved and Tweeted!</p>\n              </div>\n        <div class=\"modal-footer\">\n         </div>\n      </div>\n    \n    </div>\n\n\n\n\n\n\n\n  </div>\n"
 
 /***/ }),
 
@@ -819,7 +814,7 @@ module.exports = "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container-fluid {\n  margin-top: 4em;\n  text-align: center; }\n\nh1 {\n  margin-bottom: 1em; }\n\n#plans {\n  display: flex;\n  margin-top: 0px;\n  justify-content: center;\n  line-height: 0.7; }\n\n.card {\n  display: flex;\n  text-align: center;\n  margin-bottom: 5px; }\n\n.card p {\n    margin: 0px;\n    align-content: center;\n    line-height: 2em; }\n\n.card h4 {\n    margin-top: 1em; }\n\n.card-img-top {\n  height: 250px; }\n\n#npForm input {\n  text-align: center; }\n\n#add2 {\n  width: 90%;\n  margin: auto; }\n\n.divide {\n  height: 60px; }\n\n/* The Modal (background) */\n\n.modal {\n  display: none;\n  /* Hidden by default */\n  position: fixed;\n  /* Stay in place */\n  z-index: 1;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.4);\n  /* Black w/ opacity */ }\n\n/* Modal Content */\n\n.modal-content {\n  position: relative;\n  background-color: #fefefe;\n  margin: auto;\n  padding: 0;\n  border: 1px solid #888;\n  width: 80%;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n  -webkit-animation-name: animatetop;\n  -webkit-animation-duration: 0.4s;\n  animation-name: animatetop;\n  animation-duration: 0.4s; }\n\n/* Add Animation */\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n/* The Close Button */\n\n.close {\n  color: white;\n  float: right;\n  font-size: 28px;\n  font-weight: bold; }\n\n.close:hover,\n.close:focus {\n  color: #000;\n  text-decoration: none;\n  cursor: pointer; }\n\n.modal-header {\n  padding: 2px 16px;\n  background-color: #5cb85c;\n  color: white; }\n\n.modal-body {\n  padding: 2px 16px; }\n\n.modal-footer {\n  padding: 2px 16px;\n  background-color: #5cb85c;\n  color: white; }\n"
+module.exports = ".container-fluid {\n  margin-top: 4em;\n  text-align: center; }\n\nh1 {\n  margin-bottom: 1em; }\n\n#plans {\n  display: flex;\n  margin-top: 0px;\n  justify-content: center;\n  line-height: 0.7; }\n\n.card {\n  display: flex;\n  text-align: center;\n  margin-bottom: 5px; }\n\n.card p {\n    margin: 0px;\n    align-content: center;\n    line-height: 2em; }\n\n.card h4 {\n    margin-top: 1em; }\n\n.card-img-top {\n  height: 250px; }\n\n#npForm input {\n  text-align: center; }\n\n#add2 {\n  width: 90%;\n  margin: auto; }\n\n.divide {\n  height: 60px; }\n\n/* The Modal (background) */\n\n.modal {\n  display: none;\n  position: fixed;\n  z-index: 1;\n  padding-top: 100px;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: black;\n  background-color: rgba(0, 0, 0, 0.4); }\n\n/* Modal Content */\n\n.modal-content {\n  position: relative;\n  background-color: #fefefe;\n  margin: auto;\n  padding: 0;\n  border: 1px solid #888;\n  width: 20%;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n  -webkit-animation-name: animatetop;\n  -webkit-animation-duration: 0.4s;\n  animation-name: animatetop;\n  animation-duration: 0.4s; }\n\n/* Add Animation */\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n/* The Close Button */\n\n.close {\n  color: white;\n  float: right;\n  font-size: 28px;\n  font-weight: bold; }\n\n.close:hover,\n.close:focus {\n  color: #000;\n  text-decoration: none;\n  cursor: pointer; }\n\n.modal-header {\n  padding: 2px 16px;\n  background-color: #575042;\n  color: white; }\n\n.modal-body {\n  padding: 2px 16px; }\n\n.modal-footer {\n  padding: 2px 16px;\n  background-color: #575042;\n  color: white; }\n"
 
 /***/ }),
 
@@ -855,18 +850,21 @@ var NewPlanComponent = /** @class */ (function () {
         this.dbService = dbService;
         this.router = router;
         this.auth = auth;
+        this.authUser = this.auth.user;
     }
-    NewPlanComponent.prototype.savePlan = function () {
-        var x = document.getElementById("myModal");
-        x.style.display = "block";
-        setTimeout(function () { x.style.display = "none"; }, 3000);
-        // this.dbService.savePlantoDb(this.plan).subscribe(results=>{
-        //   var canplan=[];
-        //   canplan.push(this.plan);
-        //   var user = canplan[0].user;
-        //     this.router.navigate(['/myplans/'+user]);
-        // return console.log("Plan saved!");
-        // })
+    NewPlanComponent.prototype.savePlan = function (form) {
+        var _this = this;
+        this.dbService.savePlantoDb(this.plan).subscribe(function (results) {
+            var canplan = [];
+            canplan.push(_this.plan);
+            var user = canplan[0].user;
+            //console.log( "var user:  "+ user);
+            // var x = document.getElementById("myModal");
+            // x.style.display = "block";
+            //    setTimeout(function(){ x.style.display = "none" }, 2500);
+            _this.router.navigate(['/myplans/' + user]);
+            return console.log("Plan saved!");
+        });
     };
     NewPlanComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1053,7 +1051,10 @@ var SearchComponent = /** @class */ (function () {
         this.locations = [];
     }
     SearchComponent.prototype.ngOnInit = function () {
-        this.authUser = this.auth.user;
+        var _this = this;
+        this.auth.getAuthUser().subscribe(function (data) {
+            _this.authUser = data;
+        });
     };
     SearchComponent.prototype.onClick = function (event) {
         var target = event.target || event.srcElement || event.currentTarget;

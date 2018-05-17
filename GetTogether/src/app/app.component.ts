@@ -73,7 +73,8 @@ this.saveUser(creds);
 
 
 saveUser(usercreds){
- // this.authService.setAuthUser(usercreds);
+
+ this.authService.setAuthUser(usercreds);
   this.dbService.saveUserToDb(usercreds).subscribe(results=>{
     console.log("User saved");
   });

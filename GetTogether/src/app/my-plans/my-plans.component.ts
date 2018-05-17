@@ -26,17 +26,16 @@ import { AgmCoreModule } from '@agm/core';
 export class MyPlansComponent implements OnInit{
 
 
-
-  constructor(private dbService: DbServiceService,  private router: Router, private route: ActivatedRoute, private auth: AuthService, @Inject(DOCUMENT) document
-  ) { }
+//@Inject(DOCUMENT) document
+  constructor(private dbService: DbServiceService,  private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
 
   plans: IPlan[] = [];
 
 
 authUser:any;
 
-lat: number;
-lng: number;
+// lat: number;
+// lng: number;
 
  google: any;
 
@@ -76,9 +75,9 @@ toggle(event){
 }
 
 
-private convertStringToNumber(value: string): number {
-  return +value;
-}
+// private convertStringToNumber(value: string): number {
+//   return +value;
+// }
 
 
 

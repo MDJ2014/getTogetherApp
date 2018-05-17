@@ -30,7 +30,10 @@ authUser:any;
 constructor(private dbService : DbServiceService, private auth: AuthService){}
 
 ngOnInit(){
- this.authUser = this.auth.user
+  this.auth.getAuthUser().subscribe(data=>{
+    this.authUser=data;
+    
+      })
 }
 
 

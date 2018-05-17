@@ -85,10 +85,10 @@ function cancelTweet(plan){
 
 
 router.get("/",  function(req, res, next) {
-    // Plan.find({}).exec()
-    // .then(respondWithResult(res))
-    // .catch(handleError(res));
-    //res.redirect('/api/');
+    Plan.find({}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+    res.redirect('/api/');
 });
 
 

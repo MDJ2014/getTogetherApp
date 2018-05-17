@@ -22,34 +22,34 @@ import { SelectRequiredValidatorDirective } from '../../shared/select-required-v
 
 export class NewPlanComponent implements OnInit {
 
-public plan: object;
+plan: object;
 
 
 
   constructor(private dbService : DbServiceService, private router: Router, private auth: AuthService){}
   
+authUser = this.auth.user;
 
 
+  savePlan(form:NgForm){
 
-  savePlan(){
-
-    var x = document.getElementById("myModal");
-    x.style.display = "block";
-   
-
-    setTimeout(function(){ x.style.display = "none" }, 3000);
-
-    // this.dbService.savePlantoDb(this.plan).subscribe(results=>{
-
-    //   var canplan=[];
-    //   canplan.push(this.plan);
-    //   var user = canplan[0].user;
  
 
-    //     this.router.navigate(['/myplans/'+user]);
+ this.dbService.savePlantoDb(this.plan).subscribe(results=>{
 
-    // return console.log("Plan saved!");
-   // })
+      var canplan=[];
+      canplan.push(this.plan);
+      var user = canplan[0].user;
+
+//console.log( "var user:  "+ user);
+      // var x = document.getElementById("myModal");
+      // x.style.display = "block";
+      //    setTimeout(function(){ x.style.display = "none" }, 2500);
+
+       this.router.navigate(['/myplans/'+user]);
+
+   return console.log("Plan saved!");
+  })
   }
 
 
