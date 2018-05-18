@@ -1,11 +1,8 @@
 <div class="container-fluid">
  
 <h1>My Plans</h1>
-
+<h3 id="plan-message" *ngIf="plans.length < 1">Your plans will show after you make them.</h3>
  <div id="plans">
-
-
-
     <div class="card" style="width: 32rem;" *ngFor="let plan of plans; let i = index">
         <div id = "plan{{i}}" class='card-header'>{{plan.month}} {{plan.day}},{{plan.year}} {{plan.time}}{{plan.ampm}}</div>
           <img class="card-img-top" src={{plan.image_url}} alt="image">
@@ -22,17 +19,8 @@
           <div id="map{{i}}"><img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=510x250&maptype=roadmap&markers={{plan.coordinates.latitude}},{{plan.coordinates.longitude}}&key=AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY"></div>
 
           <div class="card-footer text-muted item" id='buttons'>
-
              <a type="button" id={{i}} class="btn btn-primary"  style="color:white;"  (click)="toggle($event)" routerLink="/editplan">Edit</a>
-
           </div>
         </div>
-    
-
-</div>
-
-
-
-
-
+    </div>
 </div>

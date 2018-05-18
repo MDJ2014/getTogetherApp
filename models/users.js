@@ -3,9 +3,6 @@
 
 var mongoose = require('mongoose');
 
-
-
-
 var UserSchema = new mongoose.Schema({
     userName: {
         type: String,
@@ -22,10 +19,7 @@ var UserSchema = new mongoose.Schema({
           type:String
       },
 
-    
-
-
-});
+   });
 
 
 

@@ -1,60 +1,47 @@
-import { Injectable, EventEmitter, Output } from '@angular/core';
-import * as firebase from 'firebase/app';
-import { AngularFireAuth} from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
-import { Subject, BehaviorSubject } from 'rxjs/Rx';
+import { Injectable, EventEmitter, Output } from "@angular/core";
+import * as firebase from "firebase/app";
+import { AngularFireAuth } from "angularfire2/auth";
+import { Observable } from "rxjs/Observable";
+import { Router } from "@angular/router";
+import { Subject, BehaviorSubject } from "rxjs/Rx";
 
 @Injectable()
 export class AuthService {
-
   user: Observable<firebase.User>;
 
-  //private AuthUser$ = new Subject();
-AuthUser$= new BehaviorSubject("");
+  AuthUser$ = new BehaviorSubject("");
 
-  getAuthUser(){return this.AuthUser$}
-  setAuthUser(creds){this.AuthUser$.next(creds)}
-
-
+  getAuthUser() {
+    return this.AuthUser$;
+  }
+  setAuthUser(creds) {
+    this.AuthUser$.next(creds);
+  }
 
   public popup: Subject<boolean> = new Subject<boolean>();
 
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+    this.user = afAuth.authState;
+  }
 
-
-
-  constructor(private afAuth: AngularFireAuth,   private router: Router,) {
-this.user = afAuth.authState;
-
-    }
-
-
-    twitterLogin(){
-      return new Promise<any>((resolve, reject) => {
-        let provider = new firebase.auth.TwitterAuthProvider();
-        this.afAuth.auth
-        .signInWithPopup(provider)
-        .then(res => {
+  twitterLogin() {
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.TwitterAuthProvider();
+      this.afAuth.auth.signInWithPopup(provider).then(
+        res => {
           resolve(res);
-        }, err => {
+        },
+        err => {
           console.log(err);
           reject(err);
-        })
-      })
-   }
-
-
-
-
-   signOut(): void {
-    this.afAuth.auth.signOut().then(() => {
-    this.router.navigate(['/']);
+        }
+      );
     });
   }
 
-
-
-
-
-
+  signOut(): void {
+    this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(["/"]);
+    });
+  }
 }

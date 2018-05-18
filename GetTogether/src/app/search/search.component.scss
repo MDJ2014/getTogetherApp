@@ -6,9 +6,6 @@
 }
 
 
-
-
-
 #search-container{
     margin-top: 6em;
     width: 40%;
@@ -21,8 +18,7 @@
          width:  100px;
          padding-bottom: 10px;
 }
-   
-  
+     
 
     @media #{$break-narrow}{
         width: 50%;
@@ -51,16 +47,12 @@ hr{
     font-size: 1.5em;
 
     @media #{$break-small}{
-             
         font-size: medium;
-       
-    }
+     }
 
     @media #{$break-verysmall}{
-   
-        font-size: 15px;
-     
-      }
+           font-size: 15px;
+         }
 
 
 }

@@ -1,166 +1,163 @@
-  <div class="container-fluid">
-      <h1>Edit Plan for: </h1>
-      <div id="plans">
-      <form id="edForm" class="form-inline" >
-        <div class="card" style="width: 32rem;">
-      <div class="card-header">{{editplan.month}} {{editplan.day}},{{editplan.year}} {{editplan.time}}{{editplan.ampm}}
-      </div>
+<div class="container-fluid">
+  <h1>Edit Plan for: </h1>
+  <div id="plans">
+    <form id="edForm" class="form-inline">
+      <div class="card" style="width: 32rem;">
+        <div class="card-header">{{editplan.month}} {{editplan.day}},{{editplan.year}} {{editplan.time}}{{editplan.ampm}}
+        </div>
         <img class="card-img-top" src={{editplan.image_url}} alt="image cap">
-      <div class="card-body">
-      <p id="name" class="card-text">{{editplan.name}}</p>
-      <p id="title" class="card-text">{{editplan.categories[0].title}}</p>
-      <p id="add1" class="card-text">{{editplan.location.address1}}</p>
-      <p id="add2" class="card-text">{{editplan.location.city}}, {{editplan.location.state}}, {{editplan.location.zip_code}}</p>
-      <p id="phone" class="card-text">{{editplan.display_phone}}</p>
-      <div class="divide">
-        <hr>
-      </div>
-      <h5>Choose a new date and time or delete the plan</h5>
-        <div class="form-row align-items-center">
-          <div class="col-auto">
-          <label class="sr-only" for="month">Month</label>
-            <select class="custom-select my-1 mr-sm-2" id="month" name="month" [(ngModel)] = "editplan.month">
-            <option >Month</option>
-            <option>January</option>
-            <option>February</option>
-            <option>March</option>
-            <option>April</option>
-            <option>May</option>
-            <option>June</option>
-            <option>July</option>
-            <option>August</option>
-            <option>September</option>
-            <option>October</option>
-            <option>November</option>
-            <option>December</option>
-            </select>
+        <div class="card-body">
+          <p id="name" class="card-text">{{editplan.name}}</p>
+          <p id="title" class="card-text">{{editplan.categories[0].title}}</p>
+          <p id="add1" class="card-text">{{editplan.location.address1}}</p>
+          <p id="add2" class="card-text">{{editplan.location.city}}, {{editplan.location.state}}, {{editplan.location.zip_code}}</p>
+          <p id="phone" class="card-text">{{editplan.display_phone}}</p>
+          <div class="divide">
+            <hr>
           </div>
-        <div class="col-auto">
-          <label class="sr-only" for="day">Day</label>
-              <select class="custom-select my-1 mr-sm-2" id="day" name="day" [(ngModel)] = "editplan.day">
-              <option selected>Day</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              <option>24</option>
-              <option>25</option>
-              <option>26</option>
-              <option>27</option>
-              <option>28</option>
-              <option>29</option>
-              <option>30</option>
-              <option>31</option>
+          <h5>Choose a new date and time or delete the plan</h5>
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <label class="sr-only" for="month">Month</label>
+              <select class="custom-select my-1 mr-sm-2" id="month" name="month" [(ngModel)]="editplan.month">
+                <option>Month</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
               </select>
-        </div>   
-        <div class="col-auto">
-          <label class="sr-only" for="year">Year</label>
+            </div>
+            <div class="col-auto">
+              <label class="sr-only" for="day">Day</label>
+              <select class="custom-select my-1 mr-sm-2" id="day" name="day" [(ngModel)]="editplan.day">
+                <option selected>Day</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+              </select>
+            </div>
+            <div class="col-auto">
+              <label class="sr-only" for="year">Year</label>
               <select class="custom-select my-1 mr-sm-2" id="year" name="year" [(ngModel)]="editplan.year">
-              <option selected>Year</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-            </select>
-        </div> 
-      </div>
+                <option selected>Year</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+              </select>
+            </div>
+          </div>
           <div class="form-row align-items-center">
             <div class="col-auto">
               <select class="custom-select my-1 mr-sm-2" id="hour" name="time" [(ngModel)]="editplan.time">
-              <option>1:00</option>
-              <option>1:30</option>
-              <option>2:00</option>
-              <option>2:30</option>
-              <option>3:00</option>
-              <option>3:30</option>
-              <option>4:00</option>
-              <option>4:30</option>
-              <option>5:00</option>
-              <option>5:30</option>
-              <option>6:00</option>
-              <option>6:30</option>
-              <option>7:00</option>
-              <option>7:30</option>
-              <option>8:00</option>
-              <option>8:30</option>
-              <option>9:00</option>
-              <option>9:30</option>
-              <option>10:00</option>
-              <option>10:30</option>
-              <option>11:00</option>
-              <option>11:30</option>
-              <option>12:00</option>
-              <option>12:30</option>
+                <option>1:00</option>
+                <option>1:30</option>
+                <option>2:00</option>
+                <option>2:30</option>
+                <option>3:00</option>
+                <option>3:30</option>
+                <option>4:00</option>
+                <option>4:30</option>
+                <option>5:00</option>
+                <option>5:30</option>
+                <option>6:00</option>
+                <option>6:30</option>
+                <option>7:00</option>
+                <option>7:30</option>
+                <option>8:00</option>
+                <option>8:30</option>
+                <option>9:00</option>
+                <option>9:30</option>
+                <option>10:00</option>
+                <option>10:30</option>
+                <option>11:00</option>
+                <option>11:30</option>
+                <option>12:00</option>
+                <option>12:30</option>
               </select>
             </div>
-              <div class="col-auto">
-                <select class="custom-select my-1 mr-sm-2" id="ampm" name="ampm" [(ngModel)]="editplan.ampm">
+            <div class="col-auto">
+              <select class="custom-select my-1 mr-sm-2" id="ampm" name="ampm" [(ngModel)]="editplan.ampm">
                 <option>am</option>
                 <option>pm</option>
-                </select>
-              </div>
+              </select>
+            </div>
           </div>
           <div class="divide">
             <hr>
           </div>
           <div id="confirm" [class.confirm]="checkConfirm">
             <h5>Are you sure you want to delete this plan?</h5>
-              <a type="button" id=del{{i}} class="btn btn-warning" style="color:white;" (click)="confirmEdit()" >Cancel</a>
-              <a type="button" id=del{{i}} class="btn btn-danger" style="color:white;" (click)="delete()" >Delete</a>
+            <a type="button" id=del{{i}} class="btn btn-warning" style="color:white;" (click)="confirmEdit()">Cancel</a>
+            <a type="button" id=del{{i}} class="btn btn-danger" style="color:white;" (click)="delete()">Delete</a>
           </div>
-      </div>
+        </div>
         <div class="card-footer text-muted item" id='buttons'>
-        <a type="button" id=del{{i}} class="btn btn-danger" style="color:white;" (click)="confirmEdit()" >Delete Plan</a>
-        <a (click)="goToMyPlans()" class="btn btn-warning">Cancel</a>
-        <a type="button" (click)="onSubmit()"  id=save{{i}} class="btn btn-primary" style="color:white;" >Save</a>
+          <a type="button" id=del{{i}} class="btn btn-danger" style="color:white;" (click)="confirmEdit()">Delete Plan</a>
+          <a (click)="goToMyPlans()" class="btn btn-warning">Cancel</a>
+          <a type="button" (click)="onSubmit()" id=save{{i}} class="btn btn-primary" style="color:white;">Save</a>
         </div>
-        </div>
-      </form>
       </div>
+    </form>
+  </div>
 
-      <div id="editModal" class="modal">
+  <div id="editModal" class="modal">
 
-          <!-- Modal content -->
-          <div class="modal-content">
-            <div class="modal-header">
-              <span class="close">&times;</span>
-             </div>
-            <div class="modal-body">
-                <h2>Success!</h2>
-              <p>Plan {{modalText}} and Tweeted!</p>
-                  </div>
-            <div class="modal-footer">
-                <button (click)="goToMyPlans()" class="btn btn-primary">OK</button>
-             </div>
-          </div>
-
-
-
-
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
       </div>
+      <div class="modal-body">
+        <h2>Success!</h2>
+        <p>Plan {{modalText}} and Tweeted!</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="goToMyPlans()" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

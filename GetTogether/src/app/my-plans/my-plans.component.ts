@@ -2,11 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { IPlan } from './plan';
 import { DbServiceService } from '../db-service.service';
 import { NgForm} from "@angular/forms";
-
-import { DOCUMENT } from '@angular/common'; 
-
 import { ViewChildren, AfterViewInit, Inject, QueryList } from '@angular/core';
-import { } from '@types/googlemaps';
 import { EditPlanComponent } from '../edit-plan/edit-plan.component';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from "@angular/router";
@@ -26,7 +22,7 @@ import { AgmCoreModule } from '@agm/core';
 export class MyPlansComponent implements OnInit{
 
 
-//@Inject(DOCUMENT) document
+
   constructor(private dbService: DbServiceService,  private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
 
   plans: IPlan[] = [];
@@ -42,18 +38,6 @@ planIndex: any = -1;
 ngOnInit() {
 this.route.params.subscribe(params => { this.authUser = params['authId']; });
 
-this.auth.popup.subscribe((val)=>{
-
-  if(val === true) {
-
-       var x = document.getElementById("Modal");
-      x.style.display = "block";
-      setTimeout(function(){ 
-        x.style.display = "none";
-            }, 2500);
-  }
-  //this.auth.popup.next(false);
-});
 
 this.getAllPlans();
 
@@ -66,19 +50,6 @@ getAllPlans(){
 
   
 }
-
-
-popup(){
-  var x = document.getElementById("myModal");
-        x.style.display = "block";
-          setTimeout(function(){ 
-        x.style.display = "none";
-              }, 2500);
-}
-
-
-
-
 
 
 
@@ -97,9 +68,6 @@ toggle(event){
 }
 
 
-// private convertStringToNumber(value: string): number {
-//   return +value;
-// }
 
 
 

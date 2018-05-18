@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { AboutComponent } from './about/about.component';
@@ -24,9 +22,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
  import { environment } from '../environments/environment.prod';
  import { AuthguardGuard } from './authguard.guard';
-import { AgmCoreModule } from '@agm/core';
 import { SelectRequiredValidatorDirective } from '../shared/select-required-validator.directive';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -54,12 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
-
-    BrowserAnimationsModule,
-    AgmCoreModule.forRoot({apiKey: "AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY"})
-    
-     ],
+    AngularFirestoreModule
+    ],
   providers: [
     DbServiceService, 
  {provide: RouteReuseStrategy, useClass: ReuseStrategy},

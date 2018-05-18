@@ -1,15 +1,13 @@
 'use strict';
 
-
 var mongoose = require('mongoose');
-
-
-
 var PlanSchema = new mongoose.Schema({
 
-// user: {
-//     type: mongoose.Schema.Types.ObjectId, ref: 'User'
-//     },
+
+
+
+
+    
 user:{
         type: String
 },    
@@ -81,24 +79,9 @@ time:{
 ampm:{
     type: String
 },
-
-//    rsvps:[
-//     {
-//         name:{
-//             type:String
-//         }
-//     }
-//   ],
  
   versionKey: false
 });
-
-
-
-
-
-
-
 
 
 

@@ -1,168 +1,142 @@
- @import '../styles.scss';
-
-
-@font-face {
-    font-family: averia;
-    src: url(../assets/fonts/AveriaLibre-Bold.ttf);
-}
-
+@import "../styles.scss";
 
 @font-face {
-    font-family: ostround;
-    src: url(../assets/fonts/ostrich-sans-rounded.woff);
+  font-family: averia;
+  src: url(../assets/fonts/AveriaLibre-Bold.ttf);
 }
 
-.grid{
-    display: grid;
-    height: 100vh;
-    grid-template-columns: 1fr 20fr 1fr; 
-    font-family: averia;
-   
+@font-face {
+  font-family: ostround;
+  src: url(../assets/fonts/ostrich-sans-rounded.woff);
+}
+
+.grid {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 20fr 1fr;
+  font-family: averia;
+
   grid-template-rows: auto auto auto auto;
+}
 
-  //  grid-template-rows: auto auto minmax(160px,auto) auto;
+#header {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  background-image: url("../assets/img/barscene.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
 
+  h1 {
+    color: white;
+    font-family: averia;
+    font-size: 10em;
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black;
+    margin-top: 60px;
 
+    @media #{$break-med} {
+      font-size: 8em;
     }
-    
-    #header{
-        grid-column-start: 1;
-        grid-column-end: 4;
-        background-image: url('../assets/img/barscene.png');
-        background-repeat:no-repeat;
-        background-size: cover;
-        text-align: center;
-       
-            h1{
-                color:white;
-                font-family: averia;
-                font-size: 10em;
-                text-shadow: 1px 1px 0 black, -1px -1px 0 black;
-                margin-top: 60px;   
 
-                @media #{$break-med}{
-                    font-size: 8em;
-                    
-                  }
-        
-                  @media #{$break-narrow}{
-                    font-size: 6em;
-              
-                  }
-        
-                  @media #{$break-small}{
-                    font-size: 4.5em;
-                   
-                }
-        
-                @media #{$break-verysmall}{
-           
-                    font-size: 3em;
-                 
-                  }
-            }
-        }
+    @media #{$break-narrow} {
+      font-size: 6em;
+    }
 
-     
+    @media #{$break-small} {
+      font-size: 4.5em;
+    }
 
-        #menu{
-            cursor: pointer;
-            grid-column-start: 1;
-            grid-column-end: 4;
-            font-family: averia;
-           .badge{
-               margin-left:5px;
-           }
-           #nav a:hover{
-            color: $clay  !important; 
-            text-decoration: none;
-                }
-                .navbar-nav > li{
-                    padding-left:30px;
-                    padding-right:30px;
-                  }
-        }
-       
-          
-         
-   
-        #search{
-            grid-column-start: 2;
-            grid-column-end: 3;
-        
-        }
-
-
-#footer{
-    grid-column-start: 1;
-                grid-column-end: 4;
-               background-image: url('../assets/img/fake_brick.png');
-                background-repeat: repeat-x;
-                color:white;
-                #credits{
-                    display:flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    img{
-                        width: 3em;
-                        @media #{$break-narrow}{
-                                 width: 3em;
-                                padding: 5px;
-                                }
-                        @media #{$break-tiny}{
-             
-                                        width: 2.5em;
-                                       padding: 2px;
-                                    }
-                    }
-                    @media #{$break-narrow}{
-                     font-size: 10px;
-                       }
-                    @media #{$break-tiny}{
-                        font-size:8px;
-                           }
-
-
-
-                }
+    @media #{$break-verysmall} {
+      font-size: 3em;
+    }
+  }
 }
 
+#menu {
+  cursor: pointer;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  font-family: averia;
+  .badge {
+    margin-left: 5px;
+  }
+  #nav a:hover {
+    color: $clay !important;
+    text-decoration: none;
+  }
+  .navbar-nav > li {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
 
+#search {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
 
- .circle{
-     border-radius: 50%;
- }      
-  #userlogo{
-    width: 40px;
-    height: 40px;
-    margin-left: 20px;
-  margin-top: 0px; 
+#footer {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  background-image: url("../assets/img/fake_brick.png");
+  background-repeat: repeat-x;
+  color: white;
+  #credits {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      width: 3em;
+      @media #{$break-narrow} {
+        width: 3em;
+        padding: 5px;
+      }
+      @media #{$break-tiny} {
+        width: 2.5em;
+        padding: 2px;
+      }
+    }
+    @media #{$break-narrow} {
+      font-size: 10px;
+    }
+    @media #{$break-tiny} {
+      font-size: 8px;
+    }
+  }
+}
+
+.circle {
+  border-radius: 50%;
+}
+#userlogo {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  margin-top: 0px;
   margin-bottom: 5px;
-  }     
-        #left{
-            grid-column-start: 1;
-            grid-column-end: 2;
-            grid-row-start: 3;
-            grid-row-end: 5;
-    
-        }
-        
-        #right{
-            grid-column-start: 3;
-            grid-column-end: 4;
-            grid-row-start: 3;
-            grid-row-end: 5;
-          
-            }
-
-.navbar{
-    background-image: url('../assets/img/fake_brick.png');
-    background-repeat: repeat-x;
+}
+#left {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 5;
 }
 
-img{
-    margin-top: 1em;
+#right {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 5;
 }
-#welcome{
-    margin-left: 10px;
+
+.navbar {
+  background-image: url("../assets/img/fake_brick.png");
+  background-repeat: repeat-x;
+}
+
+img {
+  margin-top: 1em;
+}
+#welcome {
+  margin-left: 10px;
 }

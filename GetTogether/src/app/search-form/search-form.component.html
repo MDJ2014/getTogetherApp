@@ -1,12 +1,8 @@
-
 <form #searchForm="ngForm" (ngSubmit)="onClick(searchForm)">
-    <div class="input-group mb-3">
+  <div class="input-group mb-3">
 
-        <input type="text" class="form-control" id="locSearch" name= "location"  
-        
-        placeholder="Enter city, state or zip code" ngModel >
+    <input type="text" class="form-control" id="locSearch" name="location" placeholder="Enter city, state or zip code" ngModel>
 
-        <button class="btn btn-outline-secondary" type="submit" >Search</button>
-</div>
-  </form>
-<!-- [value]="DbServiceService.searchText" (input)="DbServiceService.searchText=$event.target.value" -->
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</form>
