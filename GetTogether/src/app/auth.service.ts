@@ -3,17 +3,24 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth} from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs/Rx';
+import { Subject, BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
 
   user: Observable<firebase.User>;
 
-  private AuthUser$ = new Subject();
+  //private AuthUser$ = new Subject();
+AuthUser$= new BehaviorSubject("");
 
   getAuthUser(){return this.AuthUser$}
   setAuthUser(creds){this.AuthUser$.next(creds)}
+
+
+
+  public popup: Subject<boolean> = new Subject<boolean>();
+
+
 
 
   constructor(private afAuth: AngularFireAuth,   private router: Router,) {

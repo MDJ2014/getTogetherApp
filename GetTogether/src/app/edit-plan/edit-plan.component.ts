@@ -17,6 +17,7 @@ public editplan: object;
 
 checkConfirm = true;
 
+modalText:string;
 
   constructor(private dbService : DbServiceService,  private router: Router) { }
 
@@ -28,8 +29,11 @@ this.editplan = this.dbService.planToUp
   // form: NgForm
   onSubmit(){
     this.dbService.updatePlan(this.editplan).subscribe(results=>{
-      console.log("Plan Updated");
-      this.returnToMyPlans();
+
+      this.modalText = "Updated"
+      var x = document.getElementById("editModal");
+      x.style.display = "block";
+  
     })
 
   }
@@ -37,8 +41,10 @@ this.editplan = this.dbService.planToUp
   
 delete(){
   this.dbService.deletePlan(this.editplan).subscribe(results=>{
-console.log("Plan Deleted");
-this.returnToMyPlans();
+this.modalText="Deleted";
+
+var x = document.getElementById("editModal");
+x.style.display = "block";
    
   })
 }
@@ -47,7 +53,7 @@ confirmEdit(){
   this.checkConfirm= !this.checkConfirm;
 }
 
-returnToMyPlans(){
+goToMyPlans(){
   var canplan=[];
   canplan.push(this.editplan);
   var user = canplan[0].user;

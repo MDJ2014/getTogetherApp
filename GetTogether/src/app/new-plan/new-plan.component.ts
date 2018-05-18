@@ -29,7 +29,7 @@ plan: object;
   constructor(private dbService : DbServiceService, private router: Router, private auth: AuthService){}
   
 authUser = this.auth.user;
-
+canplan=[];
 
   savePlan(form:NgForm){
 
@@ -37,23 +37,25 @@ authUser = this.auth.user;
 
  this.dbService.savePlantoDb(this.plan).subscribe(results=>{
 
-      var canplan=[];
-      canplan.push(this.plan);
-      var user = canplan[0].user;
+     
+      this.canplan.push(this.plan);
+      var user = this.canplan[0].user;
 
-//console.log( "var user:  "+ user);
-      // var x = document.getElementById("myModal");
-      // x.style.display = "block";
-      //    setTimeout(function(){ x.style.display = "none" }, 2500);
 
-       this.router.navigate(['/myplans/'+user]);
 
-   return console.log("Plan saved!");
+
+      var x = document.getElementById("myModal");
+      x.style.display = "block";
+ 
+
   })
+ 
   }
 
-
-
+goToMyPlans(){
+  var user = this.canplan[0].user;
+  this.router.navigate(['/myplans/'+user]);
+}
 
 
 ngOnInit() {

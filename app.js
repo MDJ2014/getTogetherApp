@@ -5,32 +5,19 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var jsonParser=require("body-parser").json;
-
 const bodyParser = require('body-parser');
 const mongoose      = require('mongoose');
-
 const User = require('./models/users');
-
 const config = require('./config');
-
-
-
 const apiRoutes = require('./api');
-
 const app = express();
-
+var cors = require('cors');
 
 app.set('etag', false);
-
-
 app.use(express.static(path.resolve(__dirname,'GetTogether/dist')));
 app.use(jsonParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('dev'));
-
-
-
-
 
 
 app.use(function(req,res,next){
@@ -57,10 +44,8 @@ const db = mongoose.connection;
 
 //********************DATABASE***************************************** */
 
-
-
+app.use(cors());
 app.use('/api', apiRoutes);
-
 
 
 // catch 404 and forward to global error handler
@@ -80,10 +65,6 @@ app.use(function(req, res, next) {
     err.status = 500;
     next(err);
   });
-
-
-
-
 
 
 module.exports = app;

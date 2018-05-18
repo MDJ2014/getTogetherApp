@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit{
   searchCriteria: string;
 
   locations: object []=[];
-  //errorMessage: string;
+
 
 authUser:any;
 
@@ -30,10 +30,10 @@ authUser:any;
 constructor(private dbService : DbServiceService, private auth: AuthService){}
 
 ngOnInit(){
-  this.auth.getAuthUser().subscribe(data=>{
+  
+  this.auth.AuthUser$.subscribe(data=>{
     this.authUser=data;
-    
-      })
+  })
 }
 
 

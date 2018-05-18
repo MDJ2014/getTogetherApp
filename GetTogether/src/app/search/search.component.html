@@ -31,9 +31,9 @@
           <p class="card-text">{{location.location.city}}, <span>{{location.location.state}}, {{location.location.zip_code}}</span></p>
             <p class="card-text">{{location.display_phone}}</p>
 
-            <a *ngIf="(auth.user | async)" id={{i}} class="btn btn-primary"(click)="onClick($event)" routerLink="/newplan">I'm Going</a>
+            <a *ngIf="(authUser)" id={{i}} class="btn btn-primary"(click)="onClick($event)" routerLink="/newplan">I'm Going</a>
        
-            <a  *ngIf="!(auth.user | async)"class="btn btn-warning" >Please Log In</a>
+            <a  *ngIf="!(authUser)"class="btn btn-light" >Please Log In</a>
 
 
         </div>
@@ -43,17 +43,6 @@
 
 </div>
 
-
-
-
-
-
-
-
-<!-- businesses.id
-businesses.rating
-businesses.coordinates.latitude
-businesses.coordinates.longitude -->
 
 
 

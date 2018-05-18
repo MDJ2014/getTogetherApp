@@ -137,10 +137,30 @@
       </div>
         <div class="card-footer text-muted item" id='buttons'>
         <a type="button" id=del{{i}} class="btn btn-danger" style="color:white;" (click)="confirmEdit()" >Delete Plan</a>
-        <a (click)="returnToMyPlans()" class="btn btn-warning">Cancel</a>
+        <a (click)="goToMyPlans()" class="btn btn-warning">Cancel</a>
         <a type="button" (click)="onSubmit()"  id=save{{i}} class="btn btn-primary" style="color:white;" >Save</a>
         </div>
         </div>
       </form>
       </div>
+
+      <div id="editModal" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close">&times;</span>
+             </div>
+            <div class="modal-body">
+                <h2>Success!</h2>
+              <p>Plan {{modalText}} and Tweeted!</p>
+                  </div>
+            <div class="modal-footer">
+                <button (click)="goToMyPlans()" class="btn btn-primary">OK</button>
+             </div>
+          </div>
+
+
+
+
       </div>

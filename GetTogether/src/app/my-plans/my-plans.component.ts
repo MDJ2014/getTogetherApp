@@ -34,16 +34,26 @@ export class MyPlansComponent implements OnInit{
 
 authUser:any;
 
-// lat: number;
-// lng: number;
 
  google: any;
 
-// isEditing: boolean=false;
 planIndex: any = -1;
 
 ngOnInit() {
 this.route.params.subscribe(params => { this.authUser = params['authId']; });
+
+this.auth.popup.subscribe((val)=>{
+
+  if(val === true) {
+
+       var x = document.getElementById("Modal");
+      x.style.display = "block";
+      setTimeout(function(){ 
+        x.style.display = "none";
+            }, 2500);
+  }
+  //this.auth.popup.next(false);
+});
 
 this.getAllPlans();
 
@@ -56,6 +66,18 @@ getAllPlans(){
 
   
 }
+
+
+popup(){
+  var x = document.getElementById("myModal");
+        x.style.display = "block";
+          setTimeout(function(){ 
+        x.style.display = "none";
+              }, 2500);
+}
+
+
+
 
 
 

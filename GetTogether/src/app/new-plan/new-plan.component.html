@@ -200,14 +200,6 @@
       </div>
       <div class="card-footer text-muted item" id='buttons'>
 
-
-
-
-
-
-
-
-        
         <button [disabled]="month.pristine || day.pristine || year.pristine || time.pristine || ampm.pristine"  class="btn btn-primary" type="button" (click)="savePlan()">Save</button>
         <button routerLink="/"  class="btn btn-danger">Cancel</button>
         </div>
@@ -233,6 +225,7 @@
           <p>Plan saved and Tweeted!</p>
               </div>
         <div class="modal-footer">
+            <button (click)="goToMyPlans()" class="btn btn-primary">OK</button>
          </div>
       </div>
     

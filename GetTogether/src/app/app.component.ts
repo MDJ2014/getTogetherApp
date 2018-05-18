@@ -49,7 +49,6 @@ loginWithTwitter():void {
 
  this.authService.twitterLogin()
  .then((result)=>
- //console.log(result.displayname) );
 this.afterSignIn(result));
 }
 
@@ -83,6 +82,7 @@ saveUser(usercreds){
 
 logOut(){
   this.user=[];
+  this.authService.setAuthUser("");
   this.authService.signOut();
 }
 

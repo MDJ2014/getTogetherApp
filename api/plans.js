@@ -5,7 +5,7 @@ const router = new express.Router();
 var applyPatch = require('fast-json-patch');
 var User = require('../models/users').User;
 var Plan = require('../models/plans').Plan;
-
+//var cors = require('cors');
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -14,6 +14,14 @@ const tconfig = require('../tconfig');
 const Twit = require('twit');
 
 const T = new Twit(tconfig);
+
+
+
+// var corsOptions = {
+//   origin: 'http://localhost:5000',
+//   optionsSuccessStatus: 200 
+// }
+
 
 
 
@@ -97,14 +105,10 @@ router.get("/",  function(req, res, next) {
 router.get("/:id",  function(req, res, next) {
  
 return Plan.find({user: req.params.id}).exec()
-//return Plan.findById(req.params.id).exec()
 .then(handleEntityNotFound(res))
 .then(respondWithResult(res))
 .catch(handleError(res));
 });
-
-
-
 
 
 
@@ -118,74 +122,6 @@ router.post("/",  function(req, res, next) {
 
 
 
-//router.post("/new",  function(req, res, next) {
-    // return Plan.create(req.body).exec()
-    // .then(function(plan){
-
-    //     var rsvp = new Rsvp({
-    //         user:req.headers.user,
-    //         planId: plan._id
-    //        });
-
-    //        rsvp.save(err => {  
-    //         if (err) {
-    //           return res.status(500).send(err);
-    //         }
-        
-    //     })
-    // })
-    // .then(respondWithResult(res, 201))
-    // .catch(handleError(res));
-
-
-
-
-  
-
-
-/* 
-
-    var plan = new Plan({
-        user: req.headers.user,
-        locName: req.body.locName,
-        locId: req.body.locId,
-        locAdd: req.body.locAdd,
-        locPhone: req.body.locPhone,
-        locImage: req.body.locImage,
-        lat : req.body.lat,
-        long: req.body.long,
-        locUrl: req.body.locUrl,
-        rating: req.body.rating,
-        price: req.body.price,
-        planDate: req.body.planDate,
-        planTime: req.body.planTime,
-        rsvps: req.body.rsvps
-      });
-      
-
-
-      plan.save(e=>{
-        if (e) {
-          return next(error);
-         }
-      });
- 
-    var noti= new Notification({
-      inviter:plan.user,
-      planId: plan._id,
-      invitee: 
-     });
-  
-  
-  rsvp.save(err => {  
-      if (err) {
-        return res.status(500).send(err);
-      }
-   }).then(() => res.status(204).end());
-
-*/
-//})
-
 //edit form path
 router.get("/edit/:id",  function(req, res, next) {
     return Plan.findById(req.params.id).exec()
@@ -198,15 +134,6 @@ router.get("/edit/:id",  function(req, res, next) {
 //find plan by id and update
 router.put("/edit/:id",  function(req, res, next) {
 
-// if(req.body._id) {
-//     Reflect.deleteProperty(req.body.id);
-//   }
-  //if(req.headers.user === req.body._id){
-  // return Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
-  //   .then(respondWithResult(res))
-  //   .catch(handleError(res));
-  //}
-
 return Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new:true,upsert:false}).exec()
 .then(editTweet(req.body))
 .then(respondWithResult(res))
@@ -215,27 +142,24 @@ return Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new:true,upsert:fa
 
 
 
-//update rsvps
-// router.put("/rsvps/:id",  function(req, res, next) {
-
-//   if(req.body._id) {
-//       Reflect.deleteProperty(req.body, '_id');
-//     }
-//     return Plan.findOneAndUpdate({_id: req.params.id}, {$addToSet: {rsvps: req.body.rsvps}}, {upsert: true, new: 
-//       true,  setDefaultsOnInsert: true, runValidators: true}).exec()
-//       .then(respondWithResult(res))
-//       .catch(handleError(res));
-//   });
 
 
+router.post("/delete/:id",  function(req, res, next) {
 
+ //router.options('/delete', cors())
+ // router.delete("/delete", function(req, res, next) {
 
-router.delete("/delete/:id",  function(req, res, next) {
      return Plan.findById({_id: req.params.id}).exec()
+    // return Plan.findById({_id: req.body._id}).exec()
+
+
     .then(handleEntityNotFound(res))
-    // .then(cancelTweet(res))
+    //.then(cancelTweet(req.body))
      .then(removeEntity(res))
     .catch(handleError(res));
+
+
+
 });
 
 

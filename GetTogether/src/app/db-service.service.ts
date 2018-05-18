@@ -62,6 +62,7 @@ updatePlan(plan):Observable<any>{
 
 deletePlan(plan):Observable<any>{
   return this.http.delete("./api/plans/delete/"+plan._id)
+ //return this.http.delete("./api/plans/delete", plan)
    .map((data:any)=>data.json());
 }
 
