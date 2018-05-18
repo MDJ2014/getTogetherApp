@@ -17,11 +17,6 @@ const T = new Twit(tconfig);
 
 
 
-// var corsOptions = {
-//   origin: 'http://localhost:5000',
-//   optionsSuccessStatus: 200 
-// }
-
 
 
 
@@ -144,25 +139,17 @@ return Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new:true,upsert:fa
 
 
 
-router.post("/delete/:id",  function(req, res, next) {
+router.delete("/delete/:id",  function(req, res, next) {
 
- //router.options('/delete', cors())
- // router.delete("/delete", function(req, res, next) {
+  Plan.findById({_id: req.params.id}).exec()
+  .then((plan)=>{cancelTweet(plan)})
 
-     return Plan.findById({_id: req.params.id}).exec()
-    // return Plan.findById({_id: req.body._id}).exec()
-
-
-    .then(handleEntityNotFound(res))
-    //.then(cancelTweet(req.body))
-     .then(removeEntity(res))
-    .catch(handleError(res));
-
-
-
+ return Plan.findById({_id: req.params.id}).exec()
+ 
+.then(handleEntityNotFound(res))
+   .then(removeEntity(res))
+   .catch(handleError(res));
 });
-
-
 
 
 
