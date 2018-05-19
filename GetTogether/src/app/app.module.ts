@@ -22,7 +22,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
  import { environment } from '../environments/environment.prod';
  import { AuthguardGuard } from './authguard.guard';
-import { SelectRequiredValidatorDirective } from '../shared/select-required-validator.directive';
+
 
 
 
@@ -37,7 +37,7 @@ import { SelectRequiredValidatorDirective } from '../shared/select-required-vali
     EditPlanComponent,
     NewPlanComponent,
     SearchFormComponent,
-    SelectRequiredValidatorDirective,
+
 
 
   ],

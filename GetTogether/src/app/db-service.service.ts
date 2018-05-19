@@ -27,7 +27,7 @@ export class DbServiceService {
 
   planToUp: object;
 
-  googleKey: "AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY";
+
 
   constructor(private http: Http) {
     this.searchText = "";

@@ -169,7 +169,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"grid\">\n        <div class=\"item\" id=\"header\">\n                <h1>Get Together!</h1>\n        </div>\n        <div class=\"item\" id=\"menu\">\n                <div class=\"mx-auto\" style=\"width: 100%\">\n                        <nav class=\"navbar navbar-expand-lg navbar-light bg-dark\" id=\"nav\">\n                                <a style=\"color:white;\" class=\"navbar-brand\" routerLink=\"/\">Get Together!</a>\n                                <span *ngIf=\"user[0] \">\n                                        <img id=\"userlogo\" class=\"circle\" src={{user[0].photo}}>\n                                        <span id=\"welcome\" *ngIf=\"user[0]\" style=\"color:white;\">Welcome {{user[0].userName}}</span>\n                                </span>\n                                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"dropdown\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\"\n                                        aria-label=\"Toggle navigation\">\n                                        <span class=\"navbar-toggler-icon\"></span>\n                                </button>\n                                <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n                                        <div class=\"ml-auto\">\n                                                <ul class=\"navbar-nav\">\n                                                        <li class=\"nav-item active\">\n                                                                <a id=\"login\" *ngIf=\"!user[0]\" (click)=\"loginWithTwitter()\" style=\"color:white;\">Log in</a>\n\n                                                                <a id=\"logout\" style=\"color:white;\" (click)=\"logOut()\" *ngIf=\"user[0]\">Logout</a>\n                                                        </li>\n\n                                                        <li class=\"nav-item\">\n                                                                <a (click)=\"goToPlans()\" style=\"color:white;\">My Plans</a>\n                                                        </li>\n\n                                                        <li class=\"nav-item\">\n                                                                <a routerLink=\"/about\" style=\"color:white;\">About</a>\n                                                        </li>\n                                                </ul>\n                                        </div>\n                                </div>\n                        </nav>\n                </div>\n        </div>\n        <div class=\"item\" id=\"search\">\n                <router-outlet></router-outlet>\n        </div>\n\n        <div class=\"item\" id=\"footer\">\n            \n                <div id=\"credits\" class=\"container\">\n                        <div class=\"item\" id=\"madewith\"> Made with:</div>\n                         <img width=\"46\" alt=\"Mongo Logo\" src=\"assets/img/mongo-notxt.png\">\n                        <img width=\"65\" alt=\"Express Logo\" src=\"assets/img/express2.png\">\n                        <img width=\"70\" alt=\"Angular Logo\" src=\"assets/img/angular.png\">\n                        <img width=\"57\" alt=\"Node Logo\" src=\"assets/img/node2.png\">\n                        <img width=\"52\" alt=\"Twitter Logo\" src=\"assets/img/twitter.png\">\n                        <img width=\"100\" alt=\"Yelp Logo\" src=\"assets/img/yelpstar.png\">\n                        <div class=\"item\" id=\"byline\"> Made by: Mark Jones</div>\n                </div>\n              </div>\n        <div class=\"item\" id=\"left\"></div>\n        <div class=\"item\" id=\"right\"></div>\n</div>"
+module.exports = "<div class=\"grid\">\n        <div class=\"item\" id=\"header\">\n                <h1>Get Together!</h1>\n        </div>\n        <div class=\"item\" id=\"menu\">\n                <div class=\"mx-auto\" style=\"width: 100%\">\n                        <nav class=\"navbar navbar-expand-lg navbar-light bg-dark\" id=\"nav\">\n                                <a style=\"color:white;\" class=\"navbar-brand\" routerLink=\"/\">Get Together!</a>\n                                <span *ngIf=\"user[0]\">\n                                        <img id=\"userlogo\" class=\"circle\" src={{user[0]?.photo}}>\n                                        <span id=\"welcome\" *ngIf=\"user[0]\" style=\"color:white;\">Welcome {{user[0]?.userName}}</span>\n                                </span>\n                                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"dropdown\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\"\n                                        aria-label=\"Toggle navigation\">\n                                        <span class=\"navbar-toggler-icon\"></span>\n                                </button>\n                                <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n                                        <div class=\"ml-auto\">\n                                                <ul class=\"navbar-nav\">\n                                                        <li class=\"nav-item active\">\n                                                                <a id=\"login\" *ngIf=\"!user[0]\" (click)=\"loginWithTwitter()\" style=\"color:white;\">Log in</a>\n\n                                                                <a id=\"logout\" style=\"color:white;\" (click)=\"logOut()\" *ngIf=\"user[0]\">Logout</a>\n                                                        </li>\n\n                                                        <li class=\"nav-item\">\n                                                                <a (click)=\"goToPlans()\" style=\"color:white;\">My Plans</a>\n                                                        </li>\n\n                                                        <li class=\"nav-item\">\n                                                                <a routerLink=\"/about\" style=\"color:white;\">About</a>\n                                                        </li>\n                                                </ul>\n                                        </div>\n                                </div>\n                        </nav>\n                </div>\n        </div>\n        <div class=\"item\" id=\"search\">\n                <router-outlet></router-outlet>\n        </div>\n\n        <div class=\"item\" id=\"footer\">\n            \n                <div id=\"credits\" class=\"container\">\n                        <div class=\"item\" id=\"madewith\"> Made with:</div>\n                         <img width=\"46\" alt=\"Mongo Logo\" src=\"assets/img/mongo-notxt.png\">\n                        <img width=\"65\" alt=\"Express Logo\" src=\"assets/img/express2.png\">\n                        <img width=\"70\" alt=\"Angular Logo\" src=\"assets/img/angular.png\">\n                        <img width=\"57\" alt=\"Node Logo\" src=\"assets/img/node2.png\">\n                        <img width=\"52\" alt=\"Twitter Logo\" src=\"assets/img/twitter.png\">\n                        <img width=\"100\" alt=\"Yelp Logo\" src=\"assets/img/yelpstar.png\">\n                        <div class=\"item\" id=\"byline\"> Made by: Mark Jones</div>\n                </div>\n              </div>\n        <div class=\"item\" id=\"left\"></div>\n        <div class=\"item\" id=\"right\"></div>\n</div>"
 
 /***/ }),
 
@@ -304,14 +304,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angularfire2_firestore__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! angularfire2/firestore */ "./node_modules/angularfire2/firestore/index.js");
 /* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../environments/environment.prod */ "./src/environments/environment.prod.ts");
 /* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./authguard.guard */ "./src/app/authguard.guard.ts");
-/* harmony import */ var _shared_select_required_validator_directive__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../shared/select-required-validator.directive */ "./src/shared/select-required-validator.directive.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -348,7 +346,6 @@ var AppModule = /** @class */ (function () {
                 _edit_plan_edit_plan_component__WEBPACK_IMPORTED_MODULE_7__["EditPlanComponent"],
                 _new_plan_new_plan_component__WEBPACK_IMPORTED_MODULE_8__["NewPlanComponent"],
                 _search_form_search_form_component__WEBPACK_IMPORTED_MODULE_12__["SearchFormComponent"],
-                _shared_select_required_validator_directive__WEBPACK_IMPORTED_MODULE_23__["SelectRequiredValidatorDirective"],
             ],
             imports: [
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
@@ -696,7 +693,7 @@ var EditPlanComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n \n<h1>My Plans</h1>\n<div  *ngIf=\"plans.length < 1\">Your plans will show after you make them.</div>\n <div id=\"plans\">\n    <div class=\"card\" style=\"width: 32rem;\" *ngFor=\"let plan of plans; let i = index\">\n        <div id = \"plan{{i}}\" class='card-header'>{{plan.month}} {{plan.day}},{{plan.year}} {{plan.time}}{{plan.ampm}}</div>\n          <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image\">\n          <div class=\"card-body\">\n              <h5 class=\"card-title\">{{plan.name}}</h5>\n            <div class=\"card-text\" id='loc-info'>\n                <p class=\"desc\">{{plan.categories[0].title}}</p>\n                <p class=\"card-text\"> {{plan.location.address1}} </p>\n                 <p class=\"card-text\">{{plan.location.city}}{{plan.location.state}},{{plan.location.zip_code}}</p>\n                  <p>Phone number: {{plan.display_phone}}</p>\n            </div>\n          </div>\n    \n          <div id=\"map{{i}}\"><img src=\"https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=510x250&maptype=roadmap&markers={{plan.coordinates.latitude}},{{plan.coordinates.longitude}}&key=AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY\"></div>\n\n          <div class=\"card-footer text-muted item\" id='buttons'>\n             <a type=\"button\" id={{i}} class=\"btn btn-primary\"  style=\"color:white;\"  (click)=\"toggle($event)\" routerLink=\"/editplan\">Edit</a>\n          </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n \n<h1>My Plans</h1>\n<h3 id=\"plan-message\" *ngIf=\"plans.length < 1\">Your plans will show after you make them.</h3>\n <div id=\"plans\">\n    <div class=\"card\" style=\"width: 32rem;\" *ngFor=\"let plan of plans; let i = index\">\n        <div id = \"plan{{i}}\" class='card-header'>{{plan.month}} {{plan.day}},{{plan.year}} {{plan.time}}{{plan.ampm}}</div>\n          <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image\">\n          <div class=\"card-body\">\n              <h5 class=\"card-title\">{{plan.name}}</h5>\n            <div class=\"card-text\" id='loc-info'>\n                <p class=\"desc\">{{plan.categories[0].title}}</p>\n                <p class=\"card-text\"> {{plan.location.address1}} </p>\n                 <p class=\"card-text\">{{plan.location.city}}{{plan.location.state}},{{plan.location.zip_code}}</p>\n                  <p>Phone number: {{plan.display_phone}}</p>\n            </div>\n          </div>\n    \n          <div id=\"map{{i}}\"><img src=\"https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=510x250&maptype=roadmap&markers={{plan.coordinates.latitude}},{{plan.coordinates.longitude}}&key=AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY\"></div>\n\n          <div class=\"card-footer text-muted item\" id='buttons'>\n             <a type=\"button\" id={{i}} class=\"btn btn-primary\"  style=\"color:white;\"  (click)=\"toggle($event)\" routerLink=\"/editplan\">Edit</a>\n          </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -707,7 +704,7 @@ module.exports = "<div class=\"container-fluid\">\n \n<h1>My Plans</h1>\n<div  *
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container-fluid {\n  margin-top: 4em;\n  text-align: center; }\n\nh1 {\n  margin-bottom: 1em; }\n\n#plans {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-columns: (minmax(520px, 1fr))[auto-fit];\n      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));\n  grid-gap: 15px;\n  margin-top: 0px; }\n\n.card {\n  display: flex;\n  text-align: center;\n  margin-bottom: 5px; }\n\n.card p {\n    margin: 0px; }\n\n.card h4 {\n    margin-top: 1em; }\n\n.card-img-top {\n  height: 250px; }\n\n#map {\n  margin-top: 10px;\n  height: 100%;\n  width: 100%; }\n\nagm-map {\n  height: 250px;\n  width: 510px; }\n\n.edit {\n  display: inline-block; }\n\n.hidden {\n  display: none; }\n\n.btn {\n  color: white; }\n\n#form-container {\n  margin-left: 1.5em; }\n"
+module.exports = ".container-fluid {\n  margin-top: 4em;\n  text-align: center; }\n\nh1 {\n  margin-bottom: 1em; }\n\n#plans {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-columns: (minmax(520px, 1fr))[auto-fit];\n      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));\n  grid-gap: 15px;\n  margin-top: 0px; }\n\n#plan-message {\n  margin-top: 50px;\n  margin-bottom: 100px; }\n\n.card {\n  display: flex;\n  text-align: center;\n  margin-bottom: 5px; }\n\n.card p {\n    margin: 0px; }\n\n.card h4 {\n    margin-top: 1em; }\n\n.card-img-top {\n  height: 250px; }\n\n#map {\n  margin-top: 10px;\n  height: 100%;\n  width: 100%; }\n\nagm-map {\n  height: 250px;\n  width: 510px; }\n\n.edit {\n  display: inline-block; }\n\n.hidden {\n  display: none; }\n\n.btn {\n  color: white; }\n\n#form-container {\n  margin-left: 1.5em; }\n"
 
 /***/ }),
 
@@ -1219,58 +1216,6 @@ webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
 webpackEmptyAsyncContext.id = "./src/node_modules/@angular/core/esm5 lazy recursive";
-
-/***/ }),
-
-/***/ "./src/shared/select-required-validator.directive.ts":
-/*!***********************************************************!*\
-  !*** ./src/shared/select-required-validator.directive.ts ***!
-  \***********************************************************/
-/*! exports provided: SelectRequiredValidatorDirective */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectRequiredValidatorDirective", function() { return SelectRequiredValidatorDirective; });
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/forms */ "./src/node_modules/@angular/forms/esm5/forms.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./src/node_modules/@angular/core/esm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var SelectRequiredValidatorDirective = /** @class */ (function () {
-    function SelectRequiredValidatorDirective() {
-    }
-    SelectRequiredValidatorDirective_1 = SelectRequiredValidatorDirective;
-    SelectRequiredValidatorDirective.prototype.validate = function (control) {
-        return control.value === this.appSelectValidator ? { 'defaultedSelected': true } : null;
-    };
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        __metadata("design:type", String)
-    ], SelectRequiredValidatorDirective.prototype, "appSelectValidator", void 0);
-    SelectRequiredValidatorDirective = SelectRequiredValidatorDirective_1 = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
-            selector: '[appSelectValidator]',
-            providers: [{
-                    provide: _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NG_VALIDATORS"],
-                    useExisting: SelectRequiredValidatorDirective_1,
-                    multi: true
-                }]
-        })
-    ], SelectRequiredValidatorDirective);
-    return SelectRequiredValidatorDirective;
-    var SelectRequiredValidatorDirective_1;
-}());
-
-
 
 /***/ }),
 

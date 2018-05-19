@@ -5,7 +5,6 @@ import { NgForm } from "@angular/forms";
 import { Validators, FormGroup, FormArray, FormBuilder } from "@angular/forms";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
-import { SelectRequiredValidatorDirective } from "../../shared/select-required-validator.directive";
 
 @Component({
   selector: "app-new-plan",

@@ -6,9 +6,9 @@
                 <div class="mx-auto" style="width: 100%">
                         <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="nav">
                                 <a style="color:white;" class="navbar-brand" routerLink="/">Get Together!</a>
-                                <span *ngIf="user[0] ">
-                                        <img id="userlogo" class="circle" src={{user[0].photo}}>
-                                        <span id="welcome" *ngIf="user[0]" style="color:white;">Welcome {{user[0].userName}}</span>
+                                <span *ngIf="user[0]">
+                                        <img id="userlogo" class="circle" src={{user[0]?.photo}}>
+                                        <span id="welcome" *ngIf="user[0]" style="color:white;">Welcome {{user[0]?.userName}}</span>
                                 </span>
                                 <button class="navbar-toggler" type="button" data-toggle="dropdown" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                                         aria-label="Toggle navigation">

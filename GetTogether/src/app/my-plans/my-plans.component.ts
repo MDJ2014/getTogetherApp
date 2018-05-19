@@ -7,7 +7,7 @@ import { EditPlanComponent } from '../edit-plan/edit-plan.component';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { AngularFireModule } from 'angularfire2';
-import { AgmCoreModule } from '@agm/core';
+
 
 
 @Component({
