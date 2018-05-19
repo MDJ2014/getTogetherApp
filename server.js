@@ -24,10 +24,11 @@ var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
+ * 
  */
 
 server.listen(port, function() {
-  console.log("Visit http://localhost:" + port + " in your web browser.");
+  console.log("Visit http://letsgettogether:" + port + " in your web browser.");
 });
 
 server.on("error", onError);
