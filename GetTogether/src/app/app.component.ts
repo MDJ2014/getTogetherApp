@@ -25,13 +25,7 @@ export class AppComponent implements OnInit {
     db: AngularFirestore
   ) {}
 
-  ngOnInit() {
-var id = this.user.userId;
-
-    this.dbService.getAllPlans(id).subscribe(plans => {
-      this.plans.push(plans);
-    });
-  }
+  ngOnInit() { }
 
   //get user info and navigate to user's plan list
   goToPlans() {
@@ -57,6 +51,7 @@ var id = this.user.userId;
     this.user.push(creds);
 
     this.saveUser(creds);
+
   }
 
 

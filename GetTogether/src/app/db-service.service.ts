@@ -31,7 +31,7 @@ export class DbServiceService {
 
 
 
-  
+
   planToUp: object;
 
 
@@ -61,7 +61,6 @@ export class DbServiceService {
     return (
       this.http
         .delete("./api/plans/delete/" + plan._id)
-        //return this.http.delete("./api/plans/delete", plan)
         .map((data: any) => data.json())
     );
   }
