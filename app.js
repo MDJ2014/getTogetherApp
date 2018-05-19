@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 //*********************DATABASE**************************************** */
 var dbName = "letsgettogether";
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/" + dbName, function(err) {
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI || "mongodb://localhost:27017/" + dbName, function(err) {
   if (err) {
     console.log("Error connecting to database");
   } else {
