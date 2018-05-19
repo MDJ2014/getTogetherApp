@@ -27,7 +27,7 @@ var server = http.createServer(app);
  * 
  */
 
-server.listen(port, function() {
+server.listen(process.env.PORT || "5000", function() {
   console.log("Visit http://letsgettogether:" + port + " in your web browser.");
 });
 
