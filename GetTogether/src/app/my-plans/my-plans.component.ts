@@ -25,24 +25,24 @@ export class MyPlansComponent implements OnInit{
 
   constructor(private dbService: DbServiceService,  private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
 
-  plans: IPlan[] = [];
-
+plans: IPlan[] = [];
 
 authUser:any;
-
 
  google: any;
 
 planIndex: any = -1;
 
-ngOnInit() {
-this.route.params.subscribe(params => { this.authUser = params['authId']; });
 
+ngOnInit() {
+  
+this.route.params.subscribe(params => { this.authUser = params['authId']; });
 
 this.getAllPlans();
 
 }
 
+//get list of plans 
 getAllPlans(){
   this.dbService.getAllPlans(this.authUser).subscribe(plans => {
     this.plans= plans;
@@ -53,13 +53,8 @@ getAllPlans(){
 
 
 
-getPlan(ind, month, day, year, hour, ampm){
- let planToEdit = this.plans[ind];
-}
-
-
-
-toggle(event){
+//get plan information to be updated
+edit(event){
   var target = event.target || event.srcElement || event.currentTarget;
   var idAttr = target.attributes.id;
    var index = idAttr.nodeValue;

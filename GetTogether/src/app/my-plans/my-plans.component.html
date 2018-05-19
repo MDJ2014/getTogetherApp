@@ -19,7 +19,7 @@
           <div id="map{{i}}"><img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=510x250&maptype=roadmap&markers={{plan.coordinates.latitude}},{{plan.coordinates.longitude}}&key=AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY"></div>
 
           <div class="card-footer text-muted item" id='buttons'>
-             <a type="button" id={{i}} class="btn btn-primary"  style="color:white;"  (click)="toggle($event)" routerLink="/editplan">Edit</a>
+             <a type="button" id={{i}} class="btn btn-primary"  style="color:white;"  (click)="edit($event)" routerLink="/editplan">Edit</a>
           </div>
         </div>
     </div>

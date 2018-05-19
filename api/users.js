@@ -4,6 +4,8 @@ const router = new express.Router();
 var User = require("../models/users").User;
 var Plan = require("../models/plans").Plan;
 
+
+//helper functions
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -31,10 +33,13 @@ function handleError(res, statusCode) {
   };
 }
 
+
+//
 router.get("/", function(req, res, next) {
   res.redirect("/api/");
 });
 
+//get user
 router.get("/:id", function(req, res, next) {
   return User.findById(req.params.id)
     .exec()
@@ -43,6 +48,7 @@ router.get("/:id", function(req, res, next) {
     .catch(handleError(res));
 });
 
+//save new user
 router.post("/", function(req, res, next) {
   if (User.find({ userId: req.body })) {
     return console.log("Name exists already");

@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"flex\">\n    <h2>GetTogether! allows you to search for local eateries via Yelp! and notify your friends automatically via Twitter.</h2>\n    <ol>\n        <li> You may search without logging in, but you need to log in to make a plan and have it tweeted to your friends. So,\n            log in to get started!\n        </li>\n        <li>\n            Then just enter your city, state or zip code to find places to go. Once you have chosen a place to go from the list, just\n            click \"I'm Going\".\n        </li>\n        <li> You will be taken to the \"make a plan page\" to choose a date and time.</li>\n        <li>That's all. Your friends will be notified by an automatic tweet. You will see all of your plans with maps on your\n            \"My Plans\" page.</li>\n        <li>You can change your plan time and date or cancel your plan by visiting your \"My Plans\" page. A new tweet will automatically\n            be sent to notify your friends of the change of plans.</li>\n        <li>Plans will expire after the plan date and will no longer appear in your list.</li>\n    </ol>\n</div>"
+module.exports = "<div class=\"flex\">\n    <h2>GetTogether! allows you to search for local eateries via Yelp! and notify your friends automatically via Twitter.</h2>\n    <ol>\n        <li> You may search without logging in, but you need to log in to make a plan and have it tweeted to your friends. So,\n            log in to get started!\n        </li>\n        <li>\n            Then just enter your city, state or zip code to find places to go. Once you have chosen a place to go from the list, just\n            click \"I'm Going\".\n        </li>\n        <li> You will be taken to the \"make a plan page\" to choose a date and time.</li>\n        <li>That's all. Your friends will be notified by an automatic tweet. You will see all of your plans with maps on your\n            \"My Plans\" page.</li>\n        <li>You can change your plan time and date or cancel your plan by visiting your \"My Plans\" page. A new tweet will automatically\n            be sent to notify your friends of the change of plans.</li>\n       \n    </ol>\n</div>"
 
 /***/ }),
 
@@ -223,14 +223,17 @@ var AppComponent = /** @class */ (function () {
         this.user = [];
     }
     AppComponent.prototype.ngOnInit = function () { };
+    //get user info and navigate to user's plan list
     AppComponent.prototype.goToPlans = function () {
         var authId = this.user[0].userId;
         this.router.navigate(["/myplans/" + authId]);
     };
+    //firebase - twitter auth login call to the authService
     AppComponent.prototype.loginWithTwitter = function () {
         var _this = this;
         this.authService.twitterLogin().then(function (result) { return _this.afterSignIn(result); });
     };
+    //get info from auth user's login creds
     AppComponent.prototype.afterSignIn = function (result) {
         var authUser = result.user;
         var creds = {
@@ -241,12 +244,14 @@ var AppComponent = /** @class */ (function () {
         this.user.push(creds);
         this.saveUser(creds);
     };
+    //save user info to db
     AppComponent.prototype.saveUser = function (usercreds) {
         this.authService.setAuthUser(usercreds);
         this.dbService.saveUserToDb(usercreds).subscribe(function (results) {
             console.log("User saved");
         });
     };
+    //logout
     AppComponent.prototype.logOut = function () {
         this.user = [];
         this.authService.setAuthUser("");
@@ -410,15 +415,16 @@ var AuthService = /** @class */ (function () {
         this.afAuth = afAuth;
         this.router = router;
         this.AuthUser$ = new rxjs_Rx__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"]("");
-        this.popup = new rxjs_Rx__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.user = afAuth.authState;
     }
+    //helpers for use in other components
     AuthService.prototype.getAuthUser = function () {
         return this.AuthUser$;
     };
     AuthService.prototype.setAuthUser = function (creds) {
         this.AuthUser$.next(creds);
     };
+    //firebase, twitter auth
     AuthService.prototype.twitterLogin = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -431,6 +437,7 @@ var AuthService = /** @class */ (function () {
             });
         });
     };
+    //sign out
     AuthService.prototype.signOut = function () {
         var _this = this;
         this.afAuth.auth.signOut().then(function () {
@@ -539,44 +546,52 @@ var DbServiceService = /** @class */ (function () {
             headers: null,
             withCredentials: true
         });
+        //var for twitter search
         this.searchText = "";
+        //sets the new plan as observable
         this.planSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]({});
         this.newPlan = this.planSource.asObservable();
+        //sets plan to be edited as observable
         this.planToUpdateSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]({});
         this.planToUpdate = this.planToUpdateSource.asObservable();
         this.searchText = "";
     }
+    //gets new plan object and sets as observable
     DbServiceService.prototype.updateNewPlan = function (plan, userId) {
         plan.user = userId;
         this.planSource.next(plan);
     };
+    //receives plan to update and sets the var
     DbServiceService.prototype.addPlanToUpdate = function (plan) {
         this.planToUp = plan;
     };
+    //updates plan in the db
     DbServiceService.prototype.updatePlan = function (plan) {
         return this.http
             .put("./api/plans/edit/" + plan._id, plan)
             .map(function (data) { return data.json(); });
     };
+    //deletes plan in the db
     DbServiceService.prototype.deletePlan = function (plan) {
         return (this.http
             .delete("./api/plans/delete/" + plan._id)
             .map(function (data) { return data.json(); }));
     };
+    //gets user's plans from db
     DbServiceService.prototype.getAllPlans = function (auserId) {
         return this.http.get("/api/plans/" + auserId).map(function (res) { return res.json(); });
     };
+    //saves new plan to db
     DbServiceService.prototype.savePlantoDb = function (plan) {
         return this.http.post("./api/plans", plan).map(function (data) { return data.json(); });
     };
+    //save user to db
     DbServiceService.prototype.saveUserToDb = function (user) {
         return this.http.post("/api/users", user).map(function (res) { return res.json(); });
     };
+    //sends search term to api to fetch search results
     DbServiceService.prototype.getSearchResults = function (term) {
         return this.http.post("/api/search", term).map(function (res) { return res.json(); });
-    };
-    DbServiceService.prototype.getMap = function (lat, long) {
-        return this.http.get("https://maps.googleapis.com/maps/api/staticmap?center=lat,long&zoom=14&size=510X250$key=googleKey");
     };
     DbServiceService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -693,7 +708,7 @@ var EditPlanComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n \n<h1>My Plans</h1>\n<h3 id=\"plan-message\" *ngIf=\"plans.length < 1\">Your plans will show after you make them.</h3>\n <div id=\"plans\">\n    <div class=\"card\" style=\"width: 32rem;\" *ngFor=\"let plan of plans; let i = index\">\n        <div id = \"plan{{i}}\" class='card-header'>{{plan.month}} {{plan.day}},{{plan.year}} {{plan.time}}{{plan.ampm}}</div>\n          <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image\">\n          <div class=\"card-body\">\n              <h5 class=\"card-title\">{{plan.name}}</h5>\n            <div class=\"card-text\" id='loc-info'>\n                <p class=\"desc\">{{plan.categories[0].title}}</p>\n                <p class=\"card-text\"> {{plan.location.address1}} </p>\n                 <p class=\"card-text\">{{plan.location.city}}{{plan.location.state}},{{plan.location.zip_code}}</p>\n                  <p>Phone number: {{plan.display_phone}}</p>\n            </div>\n          </div>\n    \n          <div id=\"map{{i}}\"><img src=\"https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=510x250&maptype=roadmap&markers={{plan.coordinates.latitude}},{{plan.coordinates.longitude}}&key=AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY\"></div>\n\n          <div class=\"card-footer text-muted item\" id='buttons'>\n             <a type=\"button\" id={{i}} class=\"btn btn-primary\"  style=\"color:white;\"  (click)=\"toggle($event)\" routerLink=\"/editplan\">Edit</a>\n          </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n \n<h1>My Plans</h1>\n<h3 id=\"plan-message\" *ngIf=\"plans.length < 1\">Your plans will show after you make them.</h3>\n <div id=\"plans\">\n    <div class=\"card\" style=\"width: 32rem;\" *ngFor=\"let plan of plans; let i = index\">\n        <div id = \"plan{{i}}\" class='card-header'>{{plan.month}} {{plan.day}},{{plan.year}} {{plan.time}}{{plan.ampm}}</div>\n          <img class=\"card-img-top\" src={{plan.image_url}} alt=\"image\">\n          <div class=\"card-body\">\n              <h5 class=\"card-title\">{{plan.name}}</h5>\n            <div class=\"card-text\" id='loc-info'>\n                <p class=\"desc\">{{plan.categories[0].title}}</p>\n                <p class=\"card-text\"> {{plan.location.address1}} </p>\n                 <p class=\"card-text\">{{plan.location.city}}{{plan.location.state}},{{plan.location.zip_code}}</p>\n                  <p>Phone number: {{plan.display_phone}}</p>\n            </div>\n          </div>\n    \n          <div id=\"map{{i}}\"><img src=\"https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=510x250&maptype=roadmap&markers={{plan.coordinates.latitude}},{{plan.coordinates.longitude}}&key=AIzaSyBddIRZH17OVGxX5StCZlilU3AFLdcmhUY\"></div>\n\n          <div class=\"card-footer text-muted item\" id='buttons'>\n             <a type=\"button\" id={{i}} class=\"btn btn-primary\"  style=\"color:white;\"  (click)=\"edit($event)\" routerLink=\"/editplan\">Edit</a>\n          </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -749,16 +764,15 @@ var MyPlansComponent = /** @class */ (function () {
         this.route.params.subscribe(function (params) { _this.authUser = params['authId']; });
         this.getAllPlans();
     };
+    //get list of plans 
     MyPlansComponent.prototype.getAllPlans = function () {
         var _this = this;
         this.dbService.getAllPlans(this.authUser).subscribe(function (plans) {
             _this.plans = plans;
         });
     };
-    MyPlansComponent.prototype.getPlan = function (ind, month, day, year, hour, ampm) {
-        var planToEdit = this.plans[ind];
-    };
-    MyPlansComponent.prototype.toggle = function (event) {
+    //get plan information to be updated
+    MyPlansComponent.prototype.edit = function (event) {
         var target = event.target || event.srcElement || event.currentTarget;
         var idAttr = target.attributes.id;
         var index = idAttr.nodeValue;
@@ -834,9 +848,11 @@ var NewPlanComponent = /** @class */ (function () {
         this.dbService = dbService;
         this.router = router;
         this.auth = auth;
+        //get auth user
         this.authUser = this.auth.user;
         this.canplan = [];
     }
+    //get ref to plan to be saved and show confirmation after saved
     NewPlanComponent.prototype.savePlan = function (form) {
         var _this = this;
         this.dbService.savePlantoDb(this.plan).subscribe(function (results) {
@@ -846,12 +862,14 @@ var NewPlanComponent = /** @class */ (function () {
             x.style.display = "block";
         });
     };
+    //return to plan list after clicking confirmation
     NewPlanComponent.prototype.goToMyPlans = function () {
         var user = this.canplan[0].user;
         this.router.navigate(["/myplans/" + user]);
     };
     NewPlanComponent.prototype.ngOnInit = function () {
         var _this = this;
+        //gets new plan object from the service to display
         this.dbService.newPlan.subscribe(function (plan) { return (_this.plan = plan); });
     };
     NewPlanComponent = __decorate([
@@ -883,6 +901,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReuseStrategy", function() { return ReuseStrategy; });
 var ReuseStrategy = /** @class */ (function () {
     function ReuseStrategy() {
+        //helper methods to retain search information after navigating back from viewing plans
         this.handlers = {};
     }
     ReuseStrategy.prototype.shouldDetach = function (route) {
@@ -959,6 +978,7 @@ var SearchFormComponent = /** @class */ (function () {
         this.searchClicked = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     SearchFormComponent.prototype.ngOnInit = function () { };
+    //the form emits its value to be observed 
     SearchFormComponent.prototype.onClick = function (form) {
         this.searchClicked.emit(form.value);
     };
@@ -1037,10 +1057,12 @@ var SearchComponent = /** @class */ (function () {
     }
     SearchComponent.prototype.ngOnInit = function () {
         var _this = this;
+        //get user info
         this.auth.AuthUser$.subscribe(function (data) {
             _this.authUser = data;
         });
     };
+    //sends new plan object to the dbService: to be retrieved by the NewPlan component for editing
     SearchComponent.prototype.onClick = function (event) {
         var target = event.target || event.srcElement || event.currentTarget;
         var idAttr = target.attributes.id;
@@ -1049,6 +1071,7 @@ var SearchComponent = /** @class */ (function () {
         var Auser = this.authUser.userId;
         this.dbService.updateNewPlan(planobj, Auser);
     };
+    //sends search terms to the db service
     SearchComponent.prototype.sendSearch = function (searchCriteria) {
         var _this = this;
         this.dbService.getSearchResults(searchCriteria).subscribe(function (results) {

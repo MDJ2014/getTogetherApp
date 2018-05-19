@@ -12,6 +12,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./app.component.scss"],
   providers: [DbServiceService, AuthService, AuthguardGuard]
 })
+
+
 export class AppComponent implements OnInit {
   user: any = [];
 
@@ -24,16 +26,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {}
 
+  //get user info and navigate to user's plan list
   goToPlans() {
     var authId = this.user[0].userId;
 
     this.router.navigate(["/myplans/" + authId]);
   }
 
+  //firebase - twitter auth login call to the authService
   loginWithTwitter(): void {
     this.authService.twitterLogin().then(result => this.afterSignIn(result));
   }
-
+//get info from auth user's login creds
   afterSignIn(result) {
     var authUser = result.user;
 
@@ -47,14 +51,14 @@ export class AppComponent implements OnInit {
 
     this.saveUser(creds);
   }
-
+//save user info to db
   saveUser(usercreds) {
     this.authService.setAuthUser(usercreds);
     this.dbService.saveUserToDb(usercreds).subscribe(results => {
       console.log("User saved");
     });
   }
-
+//logout
   logOut() {
     this.user = [];
     this.authService.setAuthUser("");

@@ -7,10 +7,14 @@ import { Subject, BehaviorSubject } from "rxjs/Rx";
 
 @Injectable()
 export class AuthService {
+
+  //vars for holding, updating, emitting user creds
+
   user: Observable<firebase.User>;
 
   AuthUser$ = new BehaviorSubject("");
 
+  //helpers for use in other components
   getAuthUser() {
     return this.AuthUser$;
   }
@@ -18,12 +22,12 @@ export class AuthService {
     this.AuthUser$.next(creds);
   }
 
-  public popup: Subject<boolean> = new Subject<boolean>();
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
   }
 
+//firebase, twitter auth
   twitterLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.TwitterAuthProvider();
@@ -38,7 +42,7 @@ export class AuthService {
       );
     });
   }
-
+//sign out
   signOut(): void {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(["/"]);

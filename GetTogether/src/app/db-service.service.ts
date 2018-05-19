@@ -17,11 +17,14 @@ export class DbServiceService {
     withCredentials: true
   });
 
+  //var for twitter search
   searchText: string = "";
 
+  //sets the new plan as observable
   private planSource = new BehaviorSubject<object>({});
   newPlan = this.planSource.asObservable();
 
+  //sets plan to be edited as observable
   private planToUpdateSource = new BehaviorSubject<object>({});
   planToUpdate = this.planToUpdateSource.asObservable();
 
@@ -33,21 +36,23 @@ export class DbServiceService {
     this.searchText = "";
   }
 
+  //gets new plan object and sets as observable
   updateNewPlan(plan, userId) {
     plan.user = userId;
     this.planSource.next(plan);
   }
-
+//receives plan to update and sets the var
   addPlanToUpdate(plan) {
     this.planToUp = plan;
   }
 
+  //updates plan in the db
   updatePlan(plan): Observable<any> {
     return this.http
       .put("./api/plans/edit/" + plan._id, plan)
       .map((data: any) => data.json());
   }
-
+//deletes plan in the db
   deletePlan(plan): Observable<any> {
     return (
       this.http
@@ -57,25 +62,24 @@ export class DbServiceService {
     );
   }
 
+  //gets user's plans from db
   getAllPlans(auserId) {
     return this.http.get("/api/plans/" + auserId).map(res => res.json());
   }
 
+  //saves new plan to db
   savePlantoDb(plan): Observable<any> {
     return this.http.post("./api/plans", plan).map((data: any) => data.json());
   }
 
+  //save user to db
   saveUserToDb(user) {
     return this.http.post("/api/users", user).map(res => res.json());
   }
 
+  //sends search term to api to fetch search results
   getSearchResults(term) {
     return this.http.post("/api/search", term).map(res => res.json());
   }
 
-  getMap(lat, long) {
-    return this.http.get(
-      "https://maps.googleapis.com/maps/api/staticmap?center=lat,long&zoom=14&size=510X250$key=googleKey"
-    );
-  }
 }

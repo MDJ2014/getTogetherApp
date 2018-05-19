@@ -7,7 +7,7 @@ const config = require("../config");
 router.get("/", function(req, res, next) {
   res.send("Home");
 });
-
+//route for yelp search
 router.post("/search", function(req, res, next) {
   var searchRequest = req.body;
 
@@ -24,7 +24,7 @@ router.post("/search", function(req, res, next) {
       console.log(e);
     });
 });
-
+//index to routes
 const userRoutes = require("./users");
 router.use("/users", userRoutes);
 

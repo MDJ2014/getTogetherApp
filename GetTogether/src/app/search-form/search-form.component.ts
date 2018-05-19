@@ -13,6 +13,7 @@ export class SearchFormComponent implements OnInit {
 
   @Output() searchClicked = new EventEmitter<string>();
 
+  //the form emits its value to be observed 
   onClick(form: NgForm) {
     this.searchClicked.emit(form.value);
   }

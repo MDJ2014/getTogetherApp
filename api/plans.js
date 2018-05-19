@@ -1,19 +1,17 @@
 "use strict";
 const express = require("express");
 const router = new express.Router();
-
 var applyPatch = require("fast-json-patch");
 var User = require("../models/users").User;
 var Plan = require("../models/plans").Plan;
-
 var mongoose = require("mongoose");
 mongoose.Promise = require("bluebird");
-
 const tconfig = require("../tconfig");
 const Twit = require("twit");
-
 const T = new Twit(tconfig);
 
+
+//helper functions
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -61,6 +59,8 @@ function handleError(res, statusCode) {
   };
 }
 
+
+//function for tweeting a plan
 function tweet(plan) {
   T.post(
     "statuses/update",
@@ -85,6 +85,7 @@ function tweet(plan) {
   );
 }
 
+//function for tweeting an edited plan
 function editTweet(plan) {
   T.post(
     "statuses/update",
@@ -108,7 +109,7 @@ function editTweet(plan) {
     function(err, data, response) {}
   );
 }
-
+//function for tweeting a cancelled plan
 function cancelTweet(plan) {
   T.post(
     "statuses/update",
@@ -137,6 +138,7 @@ router.get("/", function(req, res, next) {
   res.redirect("/api/");
 });
 
+//find plan by id
 router.get("/:id", function(req, res, next) {
   return Plan.find({ user: req.params.id })
     .exec()
@@ -145,6 +147,7 @@ router.get("/:id", function(req, res, next) {
     .catch(handleError(res));
 });
 
+//save a plan and tweet
 router.post("/", function(req, res, next) {
   return Plan.create(req.body)
     .then(tweet(req.body))
@@ -161,7 +164,7 @@ router.get("/edit/:id", function(req, res, next) {
     .catch(handleError(res));
 });
 
-//find plan by id and update
+//update a plan and tweet
 router.put("/edit/:id", function(req, res, next) {
   return Plan.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
@@ -172,7 +175,7 @@ router.put("/edit/:id", function(req, res, next) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 });
-
+//delete a plan and tweet
 router.delete("/delete/:id", function(req, res, next) {
   Plan.findById({ _id: req.params.id })
     .exec()

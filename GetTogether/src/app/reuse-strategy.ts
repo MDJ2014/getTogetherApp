@@ -2,6 +2,8 @@ import { RouteReuseStrategy, ActivatedRouteSnapshot, DetachedRouteHandle } from 
 
 export class  ReuseStrategy implements RouteReuseStrategy {
 
+  //helper methods to retain search information after navigating back from viewing plans
+  
   handlers: { [key: string]: DetachedRouteHandle } = {};
 
   shouldDetach(route: ActivatedRouteSnapshot): boolean {

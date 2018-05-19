@@ -9,6 +9,7 @@ import { AuthService } from "../auth.service";
   templateUrl: "./search.component.html",
   styleUrls: ["./search.component.scss"]
 })
+
 export class SearchComponent implements OnInit {
   parseInt = parseInt;
 
@@ -21,11 +22,13 @@ export class SearchComponent implements OnInit {
   constructor(private dbService: DbServiceService, private auth: AuthService) {}
 
   ngOnInit() {
+    //get user info
     this.auth.AuthUser$.subscribe(data => {
       this.authUser = data;
     });
   }
 
+  //sends new plan object to the dbService: to be retrieved by the NewPlan component for editing
   onClick(event) {
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
@@ -36,6 +39,7 @@ export class SearchComponent implements OnInit {
     this.dbService.updateNewPlan(planobj, Auser);
   }
 
+  //sends search terms to the db service
   sendSearch(searchCriteria) {
     this.dbService.getSearchResults(searchCriteria).subscribe(results => {
       this.locations = results.businesses;
