@@ -16,6 +16,7 @@ import { Router } from "@angular/router";
 
 export class AppComponent implements OnInit {
   user: any = [];
+  plans: any =[];
 
   constructor(
     private dbService: DbServiceService,
@@ -24,7 +25,13 @@ export class AppComponent implements OnInit {
     db: AngularFirestore
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+var id = this.user.userId;
+
+    this.dbService.getAllPlans(id).subscribe(plans => {
+      this.plans.push(plans);
+    });
+  }
 
   //get user info and navigate to user's plan list
   goToPlans() {
@@ -51,6 +58,8 @@ export class AppComponent implements OnInit {
 
     this.saveUser(creds);
   }
+
+
 //save user info to db
   saveUser(usercreds) {
     this.authService.setAuthUser(usercreds);
