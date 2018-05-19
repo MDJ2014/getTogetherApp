@@ -9,6 +9,9 @@
   },
   "author": "Mark Jones",
   "license": "ISC",
+  "engines":{
+    "node": "8.11.1"
+  },
   "dependencies": {
     "@agm/core": "^1.0.0-beta.2",
     "@angular/animations": "^6.0.2",
