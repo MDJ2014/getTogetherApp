@@ -51,7 +51,8 @@ router.get("/:id", function(req, res, next) {
 //save new user
 router.post("/", function(req, res, next) {
   if (User.find({ userId: req.body })) {
-    return console.log("Name exists already");
+    return res.status(202);
+   // return console.log("Name exists already");
   } else {
     return User.create(req.body)
       .then(respondWithResult(res, 201))
