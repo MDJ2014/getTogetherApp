@@ -4,6 +4,9 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { Observable } from "rxjs/Observable";
 import { Router } from "@angular/router";
 import { Subject, BehaviorSubject } from "rxjs/Rx";
+import { Http } from "@angular/http";
+
+
 
 @Injectable()
 export class AuthService {
@@ -23,7 +26,7 @@ export class AuthService {
   }
 
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private http: Http, private router: Router) {
     this.user = afAuth.authState;
   }
 
@@ -34,14 +37,40 @@ export class AuthService {
       this.afAuth.auth.signInWithPopup(provider).then(
         res => {
           resolve(res);
+         this.saveUserToDb(res);
         },
         err => {
           console.log("Not Authorized");
           reject(err);
         }
-      );
+      )
+     
     });
   }
+
+
+result:any;
+
+saveUserToDb(res){
+
+  var authUser = res.user;
+
+  var creds = {
+    userId: authUser.uid,
+    userName: authUser.displayName,
+    photo: authUser.photoURL
+  };
+
+   this.http.post("/api/users", creds).subscribe(result => this.result =result);
+
+
+}
+
+
+
+
+
+
 //sign out
   signOut(): void {
     this.afAuth.auth.signOut().then(() => {

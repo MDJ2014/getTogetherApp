@@ -248,12 +248,9 @@ var AppComponent = /** @class */ (function () {
         this.user.push(creds);
         this.saveUser(creds);
     };
-    //save user info to db
+    //save user info 
     AppComponent.prototype.saveUser = function (usercreds) {
         this.authService.setAuthUser(usercreds);
-        this.dbService.saveUserToDb(usercreds).subscribe(function (results) {
-            console.log("User saved");
-        });
     };
     //logout
     AppComponent.prototype.logOut = function () {
@@ -400,6 +397,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./src/node_modules/@angular/router/esm5/router.js");
 /* harmony import */ var rxjs_Rx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/Rx */ "./node_modules/rxjs/_esm5/Rx.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/http */ "./src/node_modules/@angular/http/esm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -414,9 +412,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = /** @class */ (function () {
-    function AuthService(afAuth, router) {
+    function AuthService(afAuth, http, router) {
         this.afAuth = afAuth;
+        this.http = http;
         this.router = router;
         this.AuthUser$ = new rxjs_Rx__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"]("");
         this.user = afAuth.authState;
@@ -435,11 +435,22 @@ var AuthService = /** @class */ (function () {
             var provider = new firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"].TwitterAuthProvider();
             _this.afAuth.auth.signInWithPopup(provider).then(function (res) {
                 resolve(res);
+                _this.saveUserToDb(res);
             }, function (err) {
                 console.log("Not Authorized");
                 reject(err);
             });
         });
+    };
+    AuthService.prototype.saveUserToDb = function (res) {
+        var _this = this;
+        var authUser = res.user;
+        var creds = {
+            userId: authUser.uid,
+            userName: authUser.displayName,
+            photo: authUser.photoURL
+        };
+        this.http.post("/api/users", creds).subscribe(function (result) { return _this.result = result; });
     };
     //sign out
     AuthService.prototype.signOut = function () {
@@ -450,7 +461,7 @@ var AuthService = /** @class */ (function () {
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"], _angular_http__WEBPACK_IMPORTED_MODULE_5__["Http"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], AuthService);
     return AuthService;
 }());
@@ -588,11 +599,6 @@ var DbServiceService = /** @class */ (function () {
     //saves new plan to db
     DbServiceService.prototype.savePlantoDb = function (plan) {
         return this.http.post("/api/plans", plan).map(function (data) { return data.json(); });
-    };
-    //save user to db
-    DbServiceService.prototype.saveUserToDb = function (user) {
-        return this.http.post("/api/users", user)
-            .map(function (res) { return res; });
     };
     //sends search term to api to fetch search results
     DbServiceService.prototype.getSearchResults = function (term) {

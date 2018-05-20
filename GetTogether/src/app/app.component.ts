@@ -57,12 +57,11 @@ export class AppComponent implements OnInit {
   }
 
 
-//save user info to db
+//save user info 
   saveUser(usercreds) {
+
     this.authService.setAuthUser(usercreds);
-    this.dbService.saveUserToDb(usercreds).subscribe(results => {
-      console.log("User saved");
-    });
+
   }
 //logout
   logOut() {

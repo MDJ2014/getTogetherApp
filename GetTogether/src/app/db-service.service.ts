@@ -75,13 +75,8 @@ export class DbServiceService {
     return this.http.post("/api/plans", plan).map((data: any) => data.json());
   }
 
-  //save user to db
-  saveUserToDb(user) {
-    return this.http.post("/api/users", user)
-    //.map((data: any) => data.json());
-   // .map(res => res.json());
-    .map(res => res);
-  }
+
+  
 
   //sends search term to api to fetch search results
   getSearchResults(term) {

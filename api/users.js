@@ -40,12 +40,12 @@ function handleError(res, statusCode) {
 
 //
 router.get("/", function(req, res, next) {
-res.redirect("/");
-// return User.find({})
-//     .exec()
+//res.redirect("/");
+return User.find({})
+    .exec()
  
-//     .then(respondWithResult(res))
-//     .catch(handleError(res));
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 
 });
 
