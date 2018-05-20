@@ -36,7 +36,9 @@ export class AppComponent implements OnInit {
 
   //firebase - twitter auth login call to the authService
   loginWithTwitter(): void {
-    this.authService.twitterLogin().then(result => this.afterSignIn(result));
+    this.authService.twitterLogin().then(result => 
+      this.afterSignIn(result));
+
   }
 //get info from auth user's login creds
   afterSignIn(result) {

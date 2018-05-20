@@ -233,7 +233,9 @@ var AppComponent = /** @class */ (function () {
     //firebase - twitter auth login call to the authService
     AppComponent.prototype.loginWithTwitter = function () {
         var _this = this;
-        this.authService.twitterLogin().then(function (result) { return _this.afterSignIn(result); });
+        this.authService.twitterLogin().then(function (result) {
+            return _this.afterSignIn(result);
+        });
     };
     //get info from auth user's login creds
     AppComponent.prototype.afterSignIn = function (result) {
@@ -434,6 +436,7 @@ var AuthService = /** @class */ (function () {
             _this.afAuth.auth.signInWithPopup(provider).then(function (res) {
                 resolve(res);
             }, function (err) {
+                console.log("Not Authorized");
                 reject(err);
             });
         });
