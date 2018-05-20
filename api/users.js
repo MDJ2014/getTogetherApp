@@ -23,7 +23,7 @@ function respondWithResult(res, statusCode) {
 function handleEntityFound(res) {
   return function(entity) {
     if (entity) {
-      res.status(203).end();
+      res.status(203).end(203);
       return null;
     }
     return entity;
@@ -40,7 +40,12 @@ function handleError(res, statusCode) {
 
 //
 router.get("/", function(req, res, next) {
-res.redirect("/api/");
+//res.redirect("/api/");
+return User.find({})
+    .exec()
+ 
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 
 });
 
@@ -57,10 +62,10 @@ router.get("/:id", function(req, res, next) {
 router.post("/", function(req, res, next) {
 User.find({"userId": req.body.userId}).exec()
 .then(handleEntityFound(res))
- .then((res)=>{
+ .then(()=>{
   return User.create(req.body)
      //  .then(respondWithResult(res, 201))
-     .then(res.status(201))
+       .then(res.status(201))
        .catch(handleError(res));
  })
 

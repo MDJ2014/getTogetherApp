@@ -18,6 +18,7 @@ app.use(express.static(path.resolve(__dirname, "GetTogether/dist")));
 app.use(jsonParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("dev"));
+ 
 
 app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
