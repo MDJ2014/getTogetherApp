@@ -77,8 +77,10 @@ export class DbServiceService {
 
   //save user to db
   saveUserToDb(user) {
-    return this.http.post("/api/users", user).map((data: any) => data.json());
-    //.map(res => res.json());
+    return this.http.post("/api/users", user)
+    //.map((data: any) => data.json());
+   // .map(res => res.json());
+    .map(res => res);
   }
 
   //sends search term to api to fetch search results

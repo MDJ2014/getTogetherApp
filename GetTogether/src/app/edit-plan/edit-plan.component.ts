@@ -11,14 +11,19 @@ import { Router } from "@angular/router";
   templateUrl: "./edit-plan.component.html",
   styleUrls: ["./edit-plan.component.scss"]
 })
+
+
 export class EditPlanComponent implements OnInit {
+
+
   public editplan: object;
+ 
 
   checkConfirm = true;
 
   modalText: string;
 
-  constructor(private dbService: DbServiceService, private router: Router) {}
+  constructor(public dbService: DbServiceService, public router: Router) {}
 
   ngOnInit() {
     this.editplan = this.dbService.planToUp;

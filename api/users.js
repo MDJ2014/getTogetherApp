@@ -1,4 +1,8 @@
 "use strict";
+
+
+
+
 const express = require("express");
 const router = new express.Router();
 var User = require("../models/users").User;
@@ -16,10 +20,10 @@ function respondWithResult(res, statusCode) {
   };
 }
 
-function handleEntityNotFound(res) {
+function handleEntityFound(res) {
   return function(entity) {
-    if (!entity) {
-      res.status(404).end();
+    if (entity) {
+      res.status(203).end();
       return null;
     }
     return entity;
@@ -36,7 +40,8 @@ function handleError(res, statusCode) {
 
 //
 router.get("/", function(req, res, next) {
-  res.redirect("/api/");
+res.redirect("/api/");
+
 });
 
 //get user
@@ -48,18 +53,21 @@ router.get("/:id", function(req, res, next) {
     .catch(handleError(res));
 });
 
-//save new user
+
 router.post("/", function(req, res, next) {
-  if (User.find({ userId: req.body })) {
-    respondWithResult(res,203);
-  } else {
-    return User.create(req.body)
-      .then(respondWithResult(res, 201))
-      .catch(handleError(res));
-  }
+User.find({"userId": req.body.userId}).exec()
+.then(handleEntityFound(res))
+ .then((res)=>{
+  return User.create(req.body)
+     //  .then(respondWithResult(res, 201))
+     .then(res.status(201))
+       .catch(handleError(res));
+ })
+
+    });
+  
 
 
-});
 
 module.exports = router;
 

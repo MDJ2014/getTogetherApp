@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
     userName: {
         type: String,
         required: [true]
-     
+
       },  
      userId:{
             type: String,

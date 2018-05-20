@@ -25,7 +25,8 @@ export class NewPlanComponent implements OnInit {
   canplan = [];
 
 //get ref to plan to be saved and show confirmation after saved
-  savePlan(form: NgForm) {
+//savePlan(form: NgForm) {
+  savePlan() {
     this.dbService.savePlantoDb(this.plan).subscribe(results => {
       this.canplan.push(this.plan);
       var user = this.canplan[0].user;

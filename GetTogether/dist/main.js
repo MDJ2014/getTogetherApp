@@ -591,8 +591,8 @@ var DbServiceService = /** @class */ (function () {
     };
     //save user to db
     DbServiceService.prototype.saveUserToDb = function (user) {
-        return this.http.post("/api/users", user).map(function (data) { return data.json(); });
-        //.map(res => res.json());
+        return this.http.post("/api/users", user)
+            .map(function (res) { return res; });
     };
     //sends search term to api to fetch search results
     DbServiceService.prototype.getSearchResults = function (term) {
@@ -858,7 +858,8 @@ var NewPlanComponent = /** @class */ (function () {
         this.canplan = [];
     }
     //get ref to plan to be saved and show confirmation after saved
-    NewPlanComponent.prototype.savePlan = function (form) {
+    //savePlan(form: NgForm) {
+    NewPlanComponent.prototype.savePlan = function () {
         var _this = this;
         this.dbService.savePlantoDb(this.plan).subscribe(function (results) {
             _this.canplan.push(_this.plan);
