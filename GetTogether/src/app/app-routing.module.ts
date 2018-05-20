@@ -29,7 +29,7 @@ const routes: Routes = [
       data: { shouldReuse: false }
      
     },
-     
+   
     {
       path: 'editplan',
       component: EditPlanComponent,
@@ -41,7 +41,7 @@ const routes: Routes = [
       canActivate: [AuthguardGuard]
     },
   
-   
+    { path: '**', redirectTo: '' }
   ];
   
 
