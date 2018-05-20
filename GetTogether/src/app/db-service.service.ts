@@ -72,12 +72,13 @@ export class DbServiceService {
 
   //saves new plan to db
   savePlantoDb(plan): Observable<any> {
-    return this.http.post("./api/plans", plan).map((data: any) => data.json());
+    return this.http.post("/api/plans", plan).map((data: any) => data.json());
   }
 
   //save user to db
   saveUserToDb(user) {
-    return this.http.post("/api/users", user).map(res => res.json());
+    return this.http.post("/api/users", user).map((data: any) => data.json());
+    //.map(res => res.json());
   }
 
   //sends search term to api to fetch search results

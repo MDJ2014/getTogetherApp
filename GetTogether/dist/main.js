@@ -587,11 +587,12 @@ var DbServiceService = /** @class */ (function () {
     };
     //saves new plan to db
     DbServiceService.prototype.savePlantoDb = function (plan) {
-        return this.http.post("./api/plans", plan).map(function (data) { return data.json(); });
+        return this.http.post("/api/plans", plan).map(function (data) { return data.json(); });
     };
     //save user to db
     DbServiceService.prototype.saveUserToDb = function (user) {
-        return this.http.post("/api/users", user).map(function (res) { return res.json(); });
+        return this.http.post("/api/users", user).map(function (data) { return data.json(); });
+        //.map(res => res.json());
     };
     //sends search term to api to fetch search results
     DbServiceService.prototype.getSearchResults = function (term) {

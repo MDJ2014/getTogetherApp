@@ -51,13 +51,19 @@ router.get("/:id", function(req, res, next) {
 //save new user
 router.post("/", function(req, res, next) {
   if (User.find({ userId: req.body })) {
-    return res.status(202);
-   // return console.log("Name exists already");
+    respondWithResult(res,203);
   } else {
     return User.create(req.body)
       .then(respondWithResult(res, 201))
       .catch(handleError(res));
   }
+
+
 });
 
 module.exports = router;
+
+
+
+
+  
