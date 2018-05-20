@@ -59,10 +59,10 @@ export class AppComponent implements OnInit {
 
 //save user info 
   saveUser(usercreds) {
-
     this.authService.setAuthUser(usercreds);
-
   }
+
+  
 //logout
   logOut() {
     this.user = [];

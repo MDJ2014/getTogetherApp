@@ -443,14 +443,14 @@ var AuthService = /** @class */ (function () {
         });
     };
     AuthService.prototype.saveUserToDb = function (res) {
-        var _this = this;
         var authUser = res.user;
         var creds = {
             userId: authUser.uid,
             userName: authUser.displayName,
             photo: authUser.photoURL
         };
-        this.http.post("/api/users", creds).subscribe(function (result) { return _this.result = result; });
+        this.http.post("/api/users", creds).subscribe({ error: function (e) { return console.error(e); } });
+        //.subscribe(error => this.result =error);
     };
     //sign out
     AuthService.prototype.signOut = function () {

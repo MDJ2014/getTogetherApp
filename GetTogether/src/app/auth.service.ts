@@ -61,7 +61,8 @@ saveUserToDb(res){
     photo: authUser.photoURL
   };
 
-   this.http.post("/api/users", creds).subscribe(result => this.result =result);
+   this.http.post("/api/users", creds).subscribe({ error: e => console.error(e) });
+   //.subscribe(error => this.result =error);
 
 
 }
