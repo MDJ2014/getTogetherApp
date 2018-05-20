@@ -135,7 +135,7 @@ function cancelTweet(plan) {
 }
 
 router.get("/", function(req, res, next) {
-  res.redirect("/api/");
+  res.redirect("/");
 });
 
 //find plan by id

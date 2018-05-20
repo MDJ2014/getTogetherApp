@@ -40,7 +40,7 @@ function handleError(res, statusCode) {
 
 //
 router.get("/", function(req, res, next) {
-res.redirect("/api/");
+res.redirect("/");
 // return User.find({})
 //     .exec()
  
