@@ -67,7 +67,6 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   var err = new Error("File Not Found");
-  //return res.render('index');
   err.status = 500;
   next(err);
 });

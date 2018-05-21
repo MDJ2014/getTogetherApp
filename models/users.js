@@ -11,7 +11,7 @@ var UserSchema = new mongoose.Schema({
       },  
      userId:{
             type: String,
-             unique: true,
+            unique: true,
              
       },  
     
